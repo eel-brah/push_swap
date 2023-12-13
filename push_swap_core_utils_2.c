@@ -6,21 +6,21 @@
 /*   By: eel-brah <eel-brah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 18:16:15 by eel-brah          #+#    #+#             */
-/*   Updated: 2023/12/13 18:16:47 by eel-brah         ###   ########.fr       */
+/*   Updated: 2023/12/13 23:10:49 by eel-brah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	swap(t_stack *a)
+void	swap(t_stack *s)
 {
 	t_node	*head;
 	t_node	*tail;
 	t_node	*node;
 
-	if (!a || !a->head)
+	if (!s || !s->head)
 		return ;
-	head = a->head;
+	head = s->head;
 	tail = head->prev;
 	node = head->next;
 	tail->next = node;
@@ -29,7 +29,7 @@ void	swap(t_stack *a)
 	head->next->prev = head;
 	node->next = head;
 	node->prev = tail;
-	a->head = node;
+	s->head = node;
 }
 
 void	push_fr_to(t_stack *from, t_stack *to)

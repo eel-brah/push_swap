@@ -1,45 +1,54 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   push_swap_operations_0.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eel-brah <eel-brah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/13 17:38:07 by eel-brah          #+#    #+#             */
-/*   Updated: 2023/12/14 00:07:58 by eel-brah         ###   ########.fr       */
+/*   Created: 2023/12/13 18:27:21 by eel-brah          #+#    #+#             */
+/*   Updated: 2023/12/14 00:10:20 by eel-brah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void print_stack(t_stack *s)
+void	sa(t_stack *a)
 {
-	if (!s || !s->head)
+	if (!a)
 		return ;
-	t_node *ptr = s->head;
-	t_node *tail = s->head->prev;
-    while (ptr != tail)
-    {
-        printf("%i\n", ptr->item);
-        ptr = ptr->next;
-    }
-	printf("%i\n", ptr->item);
+	swap(a);
+	printf("sa\n");
 }
 
-int main()
-{   
-    t_stack	*a;
+void	sb(t_stack *b)
+{
+	if (!b)
+		return ;
+	swap(b);
+	printf("sb\n");
+}
 
-	a = new_stack();
+void	ss(t_stack *a, t_stack *b)
+{
+	if (!a || !b)
+		return ;
+	swap(a);
+	swap(b);
+	printf("ss\n");
+}
 
-    push(a, 4);
-	push(a, 5);
-	push(a, 6);
-	sa(a);
-	rra(a);
-	sb(a);
-	rrb(a);
-	print_stack(a);
-    
-	free_stack(a);
+void	pa(t_stack *b, t_stack *a)
+{
+	if (!a || !b)
+		return ;
+	push_fr_to(b, a);
+	printf("pa\n");
+}
+
+void	pb(t_stack *a, t_stack *b)
+{
+	if (!a || !b)
+		return ;
+	push_fr_to(a, b);
+	printf("pb\n");
 }

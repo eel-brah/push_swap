@@ -6,7 +6,7 @@
 /*   By: eel-brah <eel-brah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 17:32:38 by eel-brah          #+#    #+#             */
-/*   Updated: 2023/12/14 00:14:53 by eel-brah         ###   ########.fr       */
+/*   Updated: 2023/12/14 16:27:03 by eel-brah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <stdio.h>
 # include <stdlib.h>
+# include "./libft/libft.h"
 
 typedef struct s_node
 {

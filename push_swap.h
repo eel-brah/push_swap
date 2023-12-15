@@ -6,7 +6,7 @@
 /*   By: eel-brah <eel-brah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 17:32:38 by eel-brah          #+#    #+#             */
-/*   Updated: 2023/12/14 16:27:03 by eel-brah         ###   ########.fr       */
+/*   Updated: 2023/12/15 18:00:24 by eel-brah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,5 +51,13 @@ void	rr(t_stack *a, t_stack *b);
 void	rra(t_stack *a);
 void	rrb(t_stack *b);
 void	rrr(t_stack *a, t_stack *b);
+int	is_exist(t_stack *s, int x);
+int	an_error(char **s, t_stack *a);
+int	push_to_stack_2(t_stack *a, char*s);
+int	push_to_stack(int args_nb, char **args, t_stack *a);
+int	is_all_digits(char *s);
+ssize_t	str_to_int(char *str);
+void	strs_free(char **s);
+int	strs_size(char **s);
 
 #endif

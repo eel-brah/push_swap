@@ -6,7 +6,7 @@
 /*   By: eel-brah <eel-brah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 00:09:45 by eel-brah          #+#    #+#             */
-/*   Updated: 2023/12/14 00:10:44 by eel-brah         ###   ########.fr       */
+/*   Updated: 2023/12/15 18:26:30 by eel-brah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	ra(t_stack *a)
 	if (!a)
 		return ;
 	rotate(a);
-	printf("ra\n");
+	ft_printf("ra\n");
 }
 
 void	rb(t_stack *b)
@@ -25,7 +25,7 @@ void	rb(t_stack *b)
 	if (!b)
 		return ;
 	rotate(b);
-	printf("rb\n");
+	ft_printf("rb\n");
 }
 
 void	rr(t_stack *a, t_stack *b)
@@ -34,5 +34,5 @@ void	rr(t_stack *a, t_stack *b)
 		return ;
 	rotate(a);
 	rotate(b);
-	printf("rr\n");
+	ft_printf("rr\n");
 }

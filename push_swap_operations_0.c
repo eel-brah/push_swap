@@ -17,7 +17,7 @@ void	sa(t_stack *a)
 	if (!a)
 		return ;
 	swap(a);
-	printf("sa\n");
+	ft_printf("sa\n");
 }
 
 void	sb(t_stack *b)
@@ -25,7 +25,7 @@ void	sb(t_stack *b)
 	if (!b)
 		return ;
 	swap(b);
-	printf("sb\n");
+	ft_printf("sb\n");
 }
 
 void	ss(t_stack *a, t_stack *b)
@@ -34,7 +34,7 @@ void	ss(t_stack *a, t_stack *b)
 		return ;
 	swap(a);
 	swap(b);
-	printf("ss\n");
+	ft_printf("ss\n");
 }
 
 void	pa(t_stack *b, t_stack *a)
@@ -42,7 +42,7 @@ void	pa(t_stack *b, t_stack *a)
 	if (!a || !b)
 		return ;
 	push_fr_to(b, a);
-	printf("pa\n");
+	ft_printf("pa\n");
 }
 
 void	pb(t_stack *a, t_stack *b)
@@ -50,5 +50,5 @@ void	pb(t_stack *a, t_stack *b)
 	if (!a || !b)
 		return ;
 	push_fr_to(a, b);
-	printf("pb\n");
+	ft_printf("pb\n");
 }

@@ -4,7 +4,6 @@
 void sheft_put(int i, int j, int *array)
 {
 	int t;
-	int	k;
 
 	if (j < 0 || j == i)
 		return ;
@@ -37,7 +36,6 @@ void insertion(int *array, int arr_size)
 int main()
 {
 	int i = 0;
-	int j = 0;
 	int array[] = {-1, INT_MAX, INT_MIN , 9, 1, 55, 'a', 'i', };
 	int arr_size = sizeof(array) / sizeof(int);
 

@@ -6,7 +6,7 @@
 /*   By: eel-brah <eel-brah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 18:16:15 by eel-brah          #+#    #+#             */
-/*   Updated: 2023/12/13 23:10:49 by eel-brah         ###   ########.fr       */
+/*   Updated: 2023/12/17 20:55:40 by eel-brah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,11 @@ void	swap(t_stack *s)
 
 	if (!s || !s->head)
 		return ;
+	if (s->size == 2)
+	{
+		s->head = s->head->next;
+		return ;
+	}
 	head = s->head;
 	tail = head->prev;
 	node = head->next;

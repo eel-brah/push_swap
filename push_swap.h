@@ -6,7 +6,7 @@
 /*   By: eel-brah <eel-brah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 17:32:38 by eel-brah          #+#    #+#             */
-/*   Updated: 2023/12/15 18:00:24 by eel-brah         ###   ########.fr       */
+/*   Updated: 2023/12/19 22:59:04 by eel-brah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ typedef struct s_node
 {
 	int				item;
 	struct s_node	*next;
-	struct s_node	*prev;    
+	struct s_node	*prev;
 }	t_node;
 
 typedef struct s_stack

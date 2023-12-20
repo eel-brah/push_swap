@@ -404,7 +404,8 @@ t_instractions a_up_b_up(size_t b_instractions, size_t a_instractions)
 	insts.rrr = 0;
 	insts.rra = 0;
 	insts.rrb = 0;
-	insts.all = max(insts.rb, insts.ra) + insts.rr;
+	insts.all = max(a_instractions, b_instractions);
+	// insts.all = insts.rr + insts.ra + insts.rb;
 	return (insts);
 }
 
@@ -418,7 +419,8 @@ t_instractions a_down_b_down(size_t b_instractions, size_t a_instractions)
 	insts.rrr = min(a_instractions, b_instractions);
 	insts.rra = a_instractions - insts.rrr;
 	insts.rrb = b_instractions - insts.rrr;
-	insts.all = max(insts.rrb, insts.rra) + insts.rrr;
+	insts.all = max(a_instractions, b_instractions);
+	// insts.all = insts.rrr + insts.rra + insts.rrb;
 	return (insts);
 }
 
@@ -433,7 +435,7 @@ t_instractions a_down_b_up(size_t b_instractions, size_t a_instractions)
 	insts.rrr = 0;
 	insts.rra = a_instractions;
 	insts.rrb = 0;
-	insts.all = a_instractions + b_instractions;
+	insts.all = insts.rra + insts.rb;
 	return (insts);
 }
 
@@ -447,7 +449,7 @@ t_instractions a_up_b_down(size_t b_instractions, size_t a_instractions)
 	insts.rrr = 0;
 	insts.rra = 0;
 	insts.rrb = b_instractions;
-	insts.all = a_instractions + b_instractions;
+	insts.all = insts.ra + insts.rrb;
 	return (insts);
 }
 
@@ -510,74 +512,11 @@ void sort_three(t_stack *a)
 		sa(a);
 	}
 }
-void	sort_3(t_stack *a)
+
+void get_the_smallest_to_the_top(t_stack *a)
 {
-	t_node *b_stack;
-	size_t b_pz;
-	// create stack b and push all - 2 to it
-	t_stack *b = new_stack();
-	if (!b)
-		return ;
-	while (a->size - 2)
-		pb(a, b);
 	size_t poz;
-	t_instractions insts;
-	size_t a_instractions;
-	char dirc;
-	t_instractions lowest_insts;
-	
-	size_t half;
-	size_t r;
-	t_node *tmp;
-	size_t s = 0;
-	//sort_three(a);
-	// loop in b and push one by one to a
-	while (b->size)
-	{
-		b_stack = b->head;
-		b_pz = 0;
-		// find the number with min insts to push it from b to a
-		while (b_pz < b->size)
-		{
-			// find the number of insts to push it in a
-			a_instractions = calc_instactions(a, b_stack->item, &dirc);
-			// find the number of insts to pop it from b, the number of all insts, and what insts
-			if (b_pz <= b->size / 2) // b up
-			{
-				if (dirc == 'u') // if a up and b up
-					insts = a_up_b_up(b_pz, a_instractions);
-				else // if a down and b up
-				{
-					if (max(a_instractions, b_pz) - min(a_instractions, b_pz) < b_pz) // best for b to go down
-						insts = a_down_b_down(b->size - b_pz, a_instractions);
-					else
-						insts = a_down_b_up(b_pz, a_instractions);
-				}
-			}
-			else // b down
-			{
-				if (dirc == 'u') // if a up and b down
-				{
-					if (max(a_instractions, b_pz) - min(a_instractions, b_pz) < b_pz) // best for b to go up
-						insts = a_up_b_up(b_pz, a_instractions);
-					else 
-						insts = a_up_b_down(b->size - b_pz, a_instractions);
-				}
-				else // if a down and b down
-					insts = a_down_b_down(b->size - b_pz, a_instractions);
-			}
-			if (b_pz == 0)
-				lowest_insts = insts;
-			else
-			{
-				if (insts.all < lowest_insts.all)
-					lowest_insts = insts;
-			}
-			b_stack = b_stack->next;
-			b_pz++;
-		}
-		applay_opperations(a, b, lowest_insts);
-	}
+	int r;
 
 	poz = find_position_3_3(a, lowest(a));
 	r = 0;
@@ -597,6 +536,163 @@ void	sort_3(t_stack *a)
 			r++;
 		}
 	}
+}
+
+// If the number you push from b to a is going to be the new biggest or the smallest number,
+// you should place it just above the old smallest number in the a.
+
+void	sort_3(t_stack *a)
+{
+	t_node *b_stack;
+	size_t b_pz;
+	if (a->size == 3)
+	{
+		sort_three(a);
+		return ;
+	}
+	// create stack b and push all - 2 to it
+	t_stack *b = new_stack();
+	if (!b)
+		return ;
+	while (a->size - 3)
+		pb(a, b);
+	size_t poz;
+	t_instractions insts;
+	size_t a_instractions;
+	size_t a_instractions_up;
+	size_t a_instractions_down;
+	char dirc;
+	t_instractions lowest_insts;
+	t_instractions tmp_insts;
+	size_t r;
+	sort_three(a);
+	// loop in b and push one by one to a
+	while (b->size)
+	{
+		b_stack = b->head;
+		b_pz = 0;
+		// find the number with min insts to push it from b to a
+		while (b_pz < b->size)
+		{
+			// find the number of insts to push it in a
+			//a_instractions = calc_instactions(a, b_stack->item, &dirc);
+			poz = find_position_3_3(a, b_stack->item);
+			a_instractions_up = poz;
+			a_instractions_down = a->size - poz;
+			// find the number of insts to pop it from b, the number of all insts, and what insts
+			if (b_pz <= b->size / 2) // b up
+			{
+				insts = a_up_b_up(b_pz, a_instractions_up);
+				tmp_insts = a_down_b_down(b->size - b_pz, a_instractions_down);
+				if (tmp_insts.all < insts.all)
+					insts = tmp_insts;
+				tmp_insts = a_down_b_up(b_pz, a_instractions_down);
+				if (tmp_insts.all < insts.all)
+					insts = tmp_insts;
+				// tmp_insts = a_up_b_down(b->size - b_pz, a_instractions_up);
+				// if (tmp_insts.all < insts.all)
+				// 	insts = tmp_insts;
+			}
+			else // b down
+			{
+				insts = a_up_b_up(b_pz, a_instractions_up);
+				tmp_insts = a_up_b_down(b->size - b_pz, a_instractions_up);
+				if (tmp_insts.all < insts.all)
+					insts = tmp_insts;
+				tmp_insts = a_down_b_down(b->size - b_pz, a_instractions_down);
+				if (tmp_insts.all < insts.all)
+					insts = tmp_insts;
+				// tmp_insts = a_down_b_up(b_pz, a_instractions_down);
+				// if (tmp_insts.all < insts.all)
+				// 	insts = tmp_insts;
+			}
+			if (b_pz == 0)
+				lowest_insts = insts;
+			else
+			{
+				if (insts.all < lowest_insts.all)
+					lowest_insts = insts;
+			}
+			b_stack = b_stack->next;
+			b_pz++;
+		}
+		applay_opperations(a, b, lowest_insts);
+	}
+	get_the_smallest_to_the_top(a);
+	free_stack(b);
+}
+
+void	sort_3_old(t_stack *a)
+{
+	t_node *b_stack;
+	size_t b_pz;
+	if (a->size == 3)
+	{
+		sort_three(a);
+		return ;
+	}
+	// create stack b and push all - 2 to it
+	t_stack *b = new_stack();
+	if (!b)
+		return ;
+	while (a->size - 3)
+		pb(a, b);
+	size_t poz;
+	t_instractions insts;
+	size_t a_instractions;
+	char dirc;
+	t_instractions lowest_insts;
+	t_instractions tmp_insts;
+	size_t r;
+	sort_three(a);
+	// loop in b and push one by one to a
+	while (b->size)
+	{
+		b_stack = b->head;
+		b_pz = 0;
+		// find the number with min insts to push it from b to a
+		while (b_pz < b->size)
+		{
+			// find the number of insts to push it in a
+			a_instractions = calc_instactions(a, b_stack->item, &dirc);
+			// find the number of insts to pop it from b, the number of all insts, and what insts
+			if (b_pz <= b->size / 2) // b up
+			{
+				if (dirc == 'u') // if a up and b up
+					insts = a_up_b_up(b_pz, a_instractions);
+				else // if a down and b up
+				{
+					insts = a_down_b_down(b->size - b_pz, a_instractions);
+					tmp_insts = a_down_b_up(b_pz, a_instractions);
+					if (tmp_insts.all < insts.all)
+						insts = tmp_insts;
+				}
+			}
+			else // b down
+			{
+				if (dirc == 'u') // if a up and b down
+				{
+					insts = a_up_b_up(b_pz, a_instractions);
+					tmp_insts = a_up_b_down(b->size - b_pz, a_instractions);
+					if (tmp_insts.all < insts.all)
+						insts = tmp_insts;
+				}
+				else // if a down and b down
+					insts = a_down_b_down(b->size - b_pz, a_instractions);
+			}
+			if (b_pz == 0)
+				lowest_insts = insts;
+			else
+			{
+				if (insts.all < lowest_insts.all)
+					lowest_insts = insts;
+			}
+			b_stack = b_stack->next;
+			b_pz++;
+		}
+		applay_opperations(a, b, lowest_insts);
+	}
+	get_the_smallest_to_the_top(a);
 	free_stack(b);
 }
 

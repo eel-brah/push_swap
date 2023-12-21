@@ -583,12 +583,14 @@ void	sort_3(t_stack *a)
 			if (b_pz <= b->size / 2) // b up
 			{
 				insts = a_up_b_up(b_pz, a_instractions_up);
-				tmp_insts = a_down_b_down(b->size - b_pz, a_instractions_down);
-				if (tmp_insts.all < insts.all)
-					insts = tmp_insts;
 				tmp_insts = a_down_b_up(b_pz, a_instractions_down);
 				if (tmp_insts.all < insts.all)
 					insts = tmp_insts;
+				tmp_insts = a_down_b_down(b->size - b_pz, a_instractions_down);
+				if (tmp_insts.all < insts.all)
+					insts = tmp_insts;
+				
+				
 				// tmp_insts = a_up_b_down(b->size - b_pz, a_instractions_up);
 				// if (tmp_insts.all < insts.all)
 				// 	insts = tmp_insts;
@@ -616,9 +618,11 @@ void	sort_3(t_stack *a)
 			b_stack = b_stack->next;
 			b_pz++;
 		}
+		// print_stack(a);
 		applay_opperations(a, b, lowest_insts);
 	}
 	get_the_smallest_to_the_top(a);
+	
 	free_stack(b);
 }
 

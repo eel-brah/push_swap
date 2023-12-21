@@ -1,0 +1,16 @@
+KO: 0
+Count: 1000
+Min: 4757
+Average: 5159.95
+Max: 5576
+------------------------
+stack size              500
+loop time               1000
+test result             OK
+total instructions      5163365
+maximum instructions    5545 (test case 426)
+minimum instructions    4776 (test case 989)
+average instructions    5163
+
+--
+min_int max_int

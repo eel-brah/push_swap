@@ -261,37 +261,40 @@ size_t max(size_t n1, size_t n2)
 	return (n2);
 }
 
-size_t find_position_3(t_stack *a, int b)
+size_t find_position_3(t_stack *a, int b_item)
 {
 	size_t poz;
-	t_node *tmp;
-	size_t s;
+	t_node *a_stack;
+	size_t b_poz;
+	int sub;
+	int sub_2;
+	int item;
 
-	tmp = a->head;
-	poz = 0;
-	int x = 0;
-	int xx = b - tmp->item;
-	if (xx < 0)
-		xx *= -1;
-	int n = tmp->item;
-	s = 0;
+	a_stack = a->head;
+	sub_2 = b_item - a_stack->item;
+	if (sub_2 < 0)
+		sub_2 *= -1;
+	item = a_stack->item;
+	b_poz = 0;
+	poz = 1;
+	a_stack = a_stack->next;
 	while (poz < a->size)
 	{
-		x = b - tmp->item;
-		if (x < 0)
-			x *= -1;
-		if (x < xx)
+		sub = b_item - a_stack->item;
+		if (sub < 0)
+			sub *= -1;
+		if (sub < sub_2)
 		{
-			xx = x;
-			s = poz;
-			n = tmp->item;
+			sub_2 = sub;
+			b_poz = poz;
+			item = a_stack->item;
 		}
-		tmp = tmp->next;
+		a_stack = a_stack->next;
 		poz++;
 	}
-	if (b > n)
-		s++;
-	return (s);
+	if (b_item > item)
+		b_poz++;
+	return (b_poz);
 }
 
 int highest(t_stack *a)
@@ -357,19 +360,16 @@ size_t find_position_3_3(t_stack *a, int b_item)
 	int l;
 
 	h = highest(a);
-	if (b_item > h)
+	if (b_item >= h)
 		return (where_is_it(a, h) + 1);
 	l = lowest(a);
 	if (b_item <= l)
-	{
-		int r = where_is_it(a, l);
-		return (r);
-	}
+		return (where_is_it(a, l));
 	a_stack = a->head;
 	poz = 0;
 	while (poz < a->size)
 	{
-		if (b_item < a_stack->item && b_item > a_stack->prev->item)
+		if (b_item <= a_stack->item && b_item > a_stack->prev->item)
 			return (poz);
 		a_stack = a_stack->next;
 		poz++;
@@ -493,6 +493,16 @@ void sort_three(t_stack *a)
 	t_node *a_stack;
 
 	a_stack = a->head;
+	if (a->size < 1)
+		return ;
+	if (a->size == 2)
+	{
+		if (a_stack->item < a_stack->next->item)
+			return;
+		else if(a_stack->item > a_stack->next->item)
+			sa(a);
+		return ;
+	}
 	if (a_stack->item < a_stack->next->item && a_stack->next->item < a_stack->next->next->item )
 		return;
 	else if(a_stack->item < a_stack->next->item && a_stack->next->item > a_stack->next->next->item && a_stack->next->next->item > a_stack->item)
@@ -516,7 +526,7 @@ void sort_three(t_stack *a)
 void get_the_smallest_to_the_top(t_stack *a)
 {
 	size_t poz;
-	int r;
+	size_t r;
 
 	poz = find_position_3_3(a, lowest(a));
 	r = 0;
@@ -538,48 +548,38 @@ void get_the_smallest_to_the_top(t_stack *a)
 	}
 }
 
-// If the number you push from b to a is going to be the new biggest or the smallest number,
-// you should place it just above the old smallest number in the a.
-
 void	sort_3(t_stack *a)
 {
+	t_stack *b;
 	t_node *b_stack;
 	size_t b_pz;
-	if (a->size == 3)
+	size_t poz;
+	t_instractions insts;
+	size_t a_instractions_up;
+	size_t a_instractions_down;
+	t_instractions lowest_insts;
+	t_instractions tmp_insts;
+
+	if (a->size <= 3)
 	{
 		sort_three(a);
 		return ;
 	}
-	// create stack b and push all - 2 to it
-	t_stack *b = new_stack();
+	b = new_stack();
 	if (!b)
 		return ;
 	while (a->size - 3)
 		pb(a, b);
-	size_t poz;
-	t_instractions insts;
-	size_t a_instractions;
-	size_t a_instractions_up;
-	size_t a_instractions_down;
-	char dirc;
-	t_instractions lowest_insts;
-	t_instractions tmp_insts;
-	size_t r;
 	sort_three(a);
-	// loop in b and push one by one to a
 	while (b->size)
 	{
 		b_stack = b->head;
 		b_pz = 0;
-		// find the number with min insts to push it from b to a
 		while (b_pz < b->size)
 		{
-			// find the number of insts to push it in a
-			//a_instractions = calc_instactions(a, b_stack->item, &dirc);
 			poz = find_position_3_3(a, b_stack->item);
 			a_instractions_up = poz;
 			a_instractions_down = a->size - poz;
-			// find the number of insts to pop it from b, the number of all insts, and what insts
 			if (b_pz <= b->size / 2) // b up
 			{
 				insts = a_up_b_up(b_pz, a_instractions_up);
@@ -589,8 +589,6 @@ void	sort_3(t_stack *a)
 				tmp_insts = a_down_b_down(b->size - b_pz, a_instractions_down);
 				if (tmp_insts.all < insts.all)
 					insts = tmp_insts;
-				
-				
 				// tmp_insts = a_up_b_down(b->size - b_pz, a_instractions_up);
 				// if (tmp_insts.all < insts.all)
 				// 	insts = tmp_insts;
@@ -618,11 +616,9 @@ void	sort_3(t_stack *a)
 			b_stack = b_stack->next;
 			b_pz++;
 		}
-		// print_stack(a);
 		applay_opperations(a, b, lowest_insts);
 	}
 	get_the_smallest_to_the_top(a);
-	
 	free_stack(b);
 }
 
@@ -641,13 +637,11 @@ void	sort_3_old(t_stack *a)
 		return ;
 	while (a->size - 3)
 		pb(a, b);
-	size_t poz;
 	t_instractions insts;
 	size_t a_instractions;
 	char dirc;
 	t_instractions lowest_insts;
 	t_instractions tmp_insts;
-	size_t r;
 	sort_three(a);
 	// loop in b and push one by one to a
 	while (b->size)

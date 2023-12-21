@@ -36,7 +36,7 @@ int	an_error(char **s, t_stack *a)
 {
 	strs_free(s);
 	free_stack(a);
-	ft_printf("ERROR\n");
+	ft_putstr_fd("Error\n", 2);
 	return (0);
 }
 

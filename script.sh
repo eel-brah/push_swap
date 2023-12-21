@@ -1,24 +1,23 @@
 #!/bin/bash
 
-filename=.out101
+filename=$2
 
 touch $filename
 i=1
 while [[ i -le 1000 ]]
 do
-A=($(seq 0 500 | sort -R | head -n 500))
-./push_swap "${A[@]}" | wc -l | awk '{if ($1 > 5500) printf("%d ***************************\n", $1); else print $1 }' >> $filename
-./push_swap "${A[@]}" | ./checker_Mac "${A[@]}" >> $filename
+A=($(seq 0 100 | sort -R | head -n 100))
+$1 "${A[@]}" | wc -l | awk '{if ($1 > 5500) printf("%d ***************************\n", $1); else print $1 }' >> $filename
+$1 "${A[@]}" | ./checker_Mac "${A[@]}" >> $filename
 (( i += 1 ))
 done
 
 
 KO=$(cat $filename | grep -c KO)
-MR=$(cat $filename | grep '*')
-cat $filename | grep -v OK | awk '{print $1}' > .tmp101
+cat $filename | grep -v OK | awk '{print $1}' > $3
 
 rm -f $filename
-filename=.tmp101
+filename=$3
 sum=0
 count=0
 min=

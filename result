@@ -14,3 +14,31 @@ average instructions    5163
 
 --
 min_int max_int
+
+
+KO: 0
+Count: 1000
+Min: 510
+Average: 575.56
+Max: 658
+
+KO: 0
+Count: 1000
+Min: 511
+Average: 575.82
+Max: 644
+----
+with 
+1
+KO: 0
+Count: 1000
+Min: 4787
+Average: 5164.03
+Max: 5606
+without
+2
+KO: 0
+Count: 1000
+Min: 4787
+Average: 5163.43
+Max: 5606

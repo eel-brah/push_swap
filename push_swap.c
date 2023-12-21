@@ -31,209 +31,6 @@ void fn()
 	system("leaks a.out");
 }
 
-void	sort(t_stack *a)
-{
-	t_stack *b = new_stack();
-	if (!b)
-		return ;
-	size_t poz;
-	size_t half;
-	size_t r;
-	t_node *tmp;
-
-	while (a->size - 1)
-		pb(a, b);
-	while (b->size)
-	{
-		if (a->head->item > b->head->item)
-		{
-			pa(b, a);
-		}
-		else 
-		{
-			
-			tmp = a->head;
-			poz = 0;
-			while (tmp->item < b->head->item && poz < a->size)
-			{
-				tmp = tmp->next;
-				poz++;
-			}
-
-			if (poz == 1)
-			{
-				pa(b, a);
-				sa(a);
-			}
-			else if (poz == a->size)
-			{
-				pa(b, a);
-				ra(a);
-			}
-			else
-			{
-				half = a->size / 2;
-				if (poz <= half)
-				{
-					r = 0;
-					while (r < poz - 1)
-					{
-						ra(a);
-						r++;
-					}
-					pa(b, a);
-					sa(a);
-					r = 0;
-					while (r < poz - 1)
-					{
-						rra(a);
-						r++;
-					}
-				}
-				else
-				{
-					r = 0;
-					while (r < a->size +  - poz)
-					{
-						rra(a);
-						r++;
-					}
-					pa(b, a);
-					r = 0;
-					while (r < a->size - poz)
-					{
-						ra(a);
-						r++;
-					}
-				}
-
-			}
-		}
-	}
-	free_stack(b);
-}
-
-size_t find_position(t_stack *a, t_stack *b)
-{
-	size_t poz;
-	t_node *tmp;
-	size_t s;
-
-	tmp = a->head;
-	poz = 0;
-	int x = 0;
-	int xx = b->head->item - tmp->item;
-	if (xx < 0)
-		xx *= -1;
-	int n = tmp->item;
-	s = 0;
-	while (poz < a->size)
-	{
-		x = b->head->item - tmp->item;
-		if (x < 0)
-			x *= -1;
-		if (x < xx)
-		{
-			xx = x;
-			s = poz;
-			n = tmp->item;
-		}
-		tmp = tmp->next;
-		poz++;
-	}
-	if (b->head->item > n)
-		s++;
-	return (s);
-}
-
-void	sort_2(t_stack *a)
-{
-	t_stack *b = new_stack();
-	if (!b)
-		return ;
-	size_t poz;
-	size_t half;
-	size_t r;
-	t_node *tmp;
-	size_t s = 0;
-
-	while (a->size - 2)
-		pb(a, b);
-	while (b->size)
-	{
-		poz = find_position(a, b);
-		half = a->size / 2;
-		if (poz <= half)
-		{
-			r = 0;
-			while (r < poz)
-			{
-				ra(a);
-				r++;
-			}
-			pa(b, a);
-		}
-		else
-		{
-			r = 0;
-			while (r < a->size - poz)
-			{
-				rra(a);
-				r++;
-			}
-			pa(b, a);
-		}
-	}
-	// return ;
-	poz = 0;
-	tmp = a->head;
-	int min = tmp->item;
-	s = 0;
-	
-	while (poz < a->size)
-	{
-		if (min > tmp->item)
-		{
-			min = tmp->item;
-			s = poz;
-		}
-		tmp = tmp->next;
-		poz++;
-	}
-	poz = s;
-	// printf("%li-------", s);
-	// return ;
-	half = a->size / 2;
-	if (poz <= half)
-	{
-		r = 0;
-		while (r < poz)
-		{
-			ra(a);
-			r++;
-		}
-	}
-	else
-	{
-		r = 0;
-		while (r < a->size - poz)
-		{
-			rra(a);
-			r++;
-		}
-	}
-	free_stack(b);
-}
-
-int ins_nbr(size_t size, size_t poz)
-{
-	size_t half = size / 2;
-	if (poz <= half)
-		return poz;
-	else
-		return size - poz;
-}
-
 typedef struct s_instractions // check norms name
 {
 	size_t all;
@@ -259,42 +56,6 @@ size_t max(size_t n1, size_t n2)
 	if (n1 > n2)
 		return (n1);
 	return (n2);
-}
-
-size_t find_position_3(t_stack *a, int b_item)
-{
-	size_t poz;
-	t_node *a_stack;
-	size_t b_poz;
-	int sub;
-	int sub_2;
-	int item;
-
-	a_stack = a->head;
-	sub_2 = b_item - a_stack->item;
-	if (sub_2 < 0)
-		sub_2 *= -1;
-	item = a_stack->item;
-	b_poz = 0;
-	poz = 1;
-	a_stack = a_stack->next;
-	while (poz < a->size)
-	{
-		sub = b_item - a_stack->item;
-		if (sub < 0)
-			sub *= -1;
-		if (sub < sub_2)
-		{
-			sub_2 = sub;
-			b_poz = poz;
-			item = a_stack->item;
-		}
-		a_stack = a_stack->next;
-		poz++;
-	}
-	if (b_item > item)
-		b_poz++;
-	return (b_poz);
 }
 
 int highest(t_stack *a)
@@ -497,15 +258,17 @@ void sort_three(t_stack *a)
 		return ;
 	if (a->size == 2)
 	{
-		if (a_stack->item < a_stack->next->item)
-			return;
-		else if(a_stack->item > a_stack->next->item)
+		// if (a_stack->item < a_stack->next->item)
+		// 	return;
+		// else 
+		if(a_stack->item > a_stack->next->item)
 			sa(a);
 		return ;
 	}
-	if (a_stack->item < a_stack->next->item && a_stack->next->item < a_stack->next->next->item )
-		return;
-	else if(a_stack->item < a_stack->next->item && a_stack->next->item > a_stack->next->next->item && a_stack->next->next->item > a_stack->item)
+	// if (a_stack->item < a_stack->next->item && a_stack->next->item < a_stack->next->next->item )
+	// 	return;
+	// else 
+	if(a_stack->item < a_stack->next->item && a_stack->next->item > a_stack->next->next->item && a_stack->next->next->item > a_stack->item)
 	{
 		sa(a);
 		ra(a);
@@ -621,80 +384,8 @@ void	sort_3(t_stack *a)
 	get_the_smallest_to_the_top(a);
 	free_stack(b);
 }
-
-void	sort_3_old(t_stack *a)
-{
-	t_node *b_stack;
-	size_t b_pz;
-	if (a->size == 3)
-	{
-		sort_three(a);
-		return ;
-	}
-	// create stack b and push all - 2 to it
-	t_stack *b = new_stack();
-	if (!b)
-		return ;
-	while (a->size - 3)
-		pb(a, b);
-	t_instractions insts;
-	size_t a_instractions;
-	char dirc;
-	t_instractions lowest_insts;
-	t_instractions tmp_insts;
-	sort_three(a);
-	// loop in b and push one by one to a
-	while (b->size)
-	{
-		b_stack = b->head;
-		b_pz = 0;
-		// find the number with min insts to push it from b to a
-		while (b_pz < b->size)
-		{
-			// find the number of insts to push it in a
-			a_instractions = calc_instactions(a, b_stack->item, &dirc);
-			// find the number of insts to pop it from b, the number of all insts, and what insts
-			if (b_pz <= b->size / 2) // b up
-			{
-				if (dirc == 'u') // if a up and b up
-					insts = a_up_b_up(b_pz, a_instractions);
-				else // if a down and b up
-				{
-					insts = a_down_b_down(b->size - b_pz, a_instractions);
-					tmp_insts = a_down_b_up(b_pz, a_instractions);
-					if (tmp_insts.all < insts.all)
-						insts = tmp_insts;
-				}
-			}
-			else // b down
-			{
-				if (dirc == 'u') // if a up and b down
-				{
-					insts = a_up_b_up(b_pz, a_instractions);
-					tmp_insts = a_up_b_down(b->size - b_pz, a_instractions);
-					if (tmp_insts.all < insts.all)
-						insts = tmp_insts;
-				}
-				else // if a down and b down
-					insts = a_down_b_down(b->size - b_pz, a_instractions);
-			}
-			if (b_pz == 0)
-				lowest_insts = insts;
-			else
-			{
-				if (insts.all < lowest_insts.all)
-					lowest_insts = insts;
-			}
-			b_stack = b_stack->next;
-			b_pz++;
-		}
-		applay_opperations(a, b, lowest_insts);
-	}
-	get_the_smallest_to_the_top(a);
-	free_stack(b);
-}
-
-
+// sort it with merge sort and sent them in chanckes
+// check if it sorted and there is a big chanck alredy sorted
 int main(int argc, char **argv)
 {
 	// atexit(fn);

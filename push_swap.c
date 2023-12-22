@@ -384,7 +384,7 @@ int is_area_valid(t_stack *a, t_stack *b, t_sorted area)
 	int a_instractions_down;
 	// return 0;
 	// return 0;
-	if (area.size >= 4)
+	if (area.size >= 10)
 	{
 		if (area.end_poz <= (int)a->size / 2)
 		{
@@ -422,9 +422,8 @@ int is_area_valid(t_stack *a, t_stack *b, t_sorted area)
 	return (1);
 }
 
-void	sort_3(t_stack *a)
+void	sort_back_to_a(t_stack *a, t_stack *b)
 {
-	t_stack *b;
 	t_node *b_stack;
 	size_t b_pz;
 	size_t poz;
@@ -434,30 +433,6 @@ void	sort_3(t_stack *a)
 	t_instractions lowest_insts;
 	t_instractions tmp_insts;
 
-	if (is_sorted(a))
-		return ;
-	if (a->size <= 3)
-	{
-		sort_three(a);
-		return ;
-	}
-	t_sorted area = find_the_largest_sorted_area(a);
-	b = new_stack();
-	if (!b)
-		return ;
-		// print_stack(a);
-	
-	// if (0 >= 3)
-	if(!is_area_valid(a, b, area))
-	{
-		while (a->size - 3)
-			pb(a, b);
-		sort_three(a);
-		if (b->size == 2 && is_sorted(b))
-			sb(b);
-	}
-// 		print_stack(a);
-// return ;
 	while (b->size)
 	{
 		b_stack = b->head;
@@ -505,7 +480,153 @@ void	sort_3(t_stack *a)
 		}
 		applay_opperations(a, b, lowest_insts);
 	}
+}
+
+int	*sub_sort_3(t_stack *a)
+{
+	int *array;
+	t_node *a_stack;
+	int i;
+
+	array = malloc(sizeof(int) * a->size);
+	if (!array)
+		return (NULL); // free all
+	a_stack = a->head;
+	i = 0;
+	while (i < (int)a->size)
+	{
+		array[i++] = a_stack->item;
+		a_stack = a_stack->next;
+	}
+	merge_sort(array, a->size, 'k'); // if faild free all
+	return (array);
+}
+
+int	is_exixt(int a_item, int *array, int end)
+{
+	int i;
+
+	i = 0;
+	while (i < end)
+	{
+		if (a_item == array[i++])
+			return (1);
+	}	
+	return (0);
+}
+
+void	send_to_b(t_stack *a, t_stack *b, int *array, int size)
+{
+	int poz;
+	int saved_size = size;
+	t_node *a_stack;
+
+	a_stack = a->head;
+	poz = 0;
+	int r;
+	int a_size = a->size;
+	while ((int)b->size < a_size)
+	{
+		while (a_stack && (int)b->size < size)
+		{
+			if (a_stack && is_exixt(a_stack->item, array, saved_size))
+			{
+				r = 0;
+				if (poz <= (int)a->size / 2)
+				{
+					while (r < poz)
+					{
+						ra(a);
+						r++;
+					}
+					
+				}
+				else
+				{
+					while (r < (int)a->size - poz)
+					{
+						rra(a);
+						r++;
+					}
+				}
+				pb(a, b);
+				if (a->size == 3)
+					return ;
+				a_stack = a->head;
+				poz = 0;
+			}
+			else
+			{
+				a_stack = a_stack->next;
+				poz++;
+			}
+		}
+		size += saved_size;
+		array += saved_size;
+	}
+}
+
+// int	get_size(int a_size)
+// {
+// 	if (a_size >= 60 && a_size < 200)
+// 	{
+
+// 	}
+// 	else if (a_size >= 200 && a_size < 400)
+// 	{
+// 		// 2.5
+// 	}
+// 	else
+// 	{
+// 		// 3.3333
+// 	}
+// }
+
+void	sort_3(t_stack *a)
+{
+	t_stack *b;
+	int *array = NULL;
+
+	if (is_sorted(a))
+		return ;
+	if (a->size <= 3)
+	{
+		sort_three(a);
+		return ;
+	}
+	// t_sorted area = find_the_largest_sorted_area(a);
+	b = new_stack();
+	if (!b)
+		return ;
+	// int size = get_size(a->size);
+	if (a->size >= 60)
+	{ 
+		array = sub_sort_3(a);
+		send_to_b(a, b, array, 181);
+		sort_three(a);
+	}
+	else 
+	{
+		while (a->size - 3)
+			pb(a, b);
+		sort_three(a);
+		if (b->size == 2 && is_sorted(b))
+			sb(b);
+	}
+
+	// if (!is_area_valid(a, b, area))
+	// if(1)
+	// {
+	// 	while (a->size - 3)
+	// 		pb(a, b);
+	// 	sort_three(a);
+	// 	if (b->size == 2 && is_sorted(b))
+	// 		sb(b);
+	// }
+
+	sort_back_to_a(a, b);
 	get_the_smallest_to_the_top(a);
+	free(array);
 	free_stack(b);
 }
 

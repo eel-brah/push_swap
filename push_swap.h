@@ -30,6 +30,8 @@ typedef struct s_stack
 	size_t	size;
 }   t_stack;
 
+int  *merge_sort(int *ptr , int size, char c);
+
 t_stack	*new_stack(void);
 t_node	*new_node(int x);
 void	free_stack(t_stack *a);

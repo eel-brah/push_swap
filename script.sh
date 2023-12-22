@@ -1,23 +1,23 @@
 #!/bin/bash
 
-filename=$2
+filename=.blabla000
 
 touch $filename
 i=1
-while [[ i -le 1000 ]]
+while [[ i -le 200 ]]
 do
-A=($(seq 0 100 | sort -R | head -n 100))
-$1 "${A[@]}" | wc -l | awk '{if ($1 > 5500) printf("%d ***************************\n", $1); else print $1 }' >> $filename
-$1 "${A[@]}" | ./checker_Mac "${A[@]}" >> $filename
+A=($(seq -500 500 | sort -R | head -n 400))
+./push_swap "${A[@]}" | wc -l | awk '{if ($1 > 5500) printf("%d ***************************\n", $1); else print $1 }' >> $filename
+./push_swap "${A[@]}" | ./checker_Mac "${A[@]}" >> $filename
 (( i += 1 ))
 done
 
 
 KO=$(cat $filename | grep -c KO)
-cat $filename | grep -v OK | awk '{print $1}' > $3
+cat $filename | grep -v OK | awk '{print $1}' > .blabla001
 
 rm -f $filename
-filename=$3
+filename=.blabla001
 sum=0
 count=0
 min=

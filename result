@@ -42,3 +42,134 @@ Count: 1000
 Min: 4787
 Average: 5163.43
 Max: 5606
+
+----
+250
+KO: 0
+Count: 100
+Min: 4227
+Average: 4565.38
+Max: 4887
+
+100
+KO: 0
+Count: 100
+Min: 4107
+Average: 4410.36
+Max: 4693
+
+200
+KO: 0
+Count: 100
+Min: 3981
+Average: 4357.98
+Max: 4650
+
+150
+KO: 0
+Count: 100
+Min: 3986
+Average: 4291.72
+Max: 4536
+
+
+
+
+
+sgir lkbir
+KO: 0
+Count: 1000
+Min: 3919
+Average: 4292.78
+Max: 4640
+
+lkbir lsgir
+KO: 0
+Count: 1000
+Min: 3891
+Average: 4290.74
+Max: 4649
+
+
+
+
+1
+KO: 0
+Count: 1000
+Min: 477
+Average: 571.80
+Max: 647
+
+2
+KO: 0
+Count: 1000
+Min: 496
+Average: 573.40
+Max: 651
+
+2
+KO: 0
+Count: 1000
+Min: 487
+Average: 570.11
+Max: 641
+
+----
+
+1
+KO: 0
+Count: 1000
+Min: 501
+Average: 571.26
+Max: 653
+
+s50
+2
+KO: 0
+Count: 1000
+Min: 499
+Average: 571.48
+Max: 653
+
+k50
+2
+KO: 0
+Count: 1000
+Min: 490
+Average: 571.73
+Max: 645
+
+s70
+2
+KO: 0
+Count: 1000
+Min: 482
+Average: 562.44
+Max: 659
+
+k70
+2
+KO: 0
+Count: 1000
+Min: 465
+Average: 560.58
+Max: 638
+
+------------------
+
+60 - 50
+70 - 50
+80 - 50
+90 - 60
+100 - 70
+110 - 70
+120 - 80
+150 - 100
+200 - 80     2.5
+250 - 100
+300 - 120    2.5
+350 - 140    2.5
+400 - 120     3.3
+450 -
+500 - 125     3.3
+1000 -        3.5

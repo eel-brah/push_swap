@@ -12,7 +12,7 @@ INCLUDE := push_swap.h
 
 SRC_FILES := push_swap.c push_swap_core_utils_0.c push_swap_core_utils_1.c push_swap_core_utils_2.c \
 				push_swap_operations_0.c push_swap_operations_1.c push_swap_operations_2.c \
-        		push_swap_utils_0.c push_swap_utils_1.c
+        		push_swap_utils_0.c push_swap_utils_1.c merge.c
 
 OBJ_FILES := $(SRC_FILES:.c=.o)
 

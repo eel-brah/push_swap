@@ -570,7 +570,7 @@ void	send_to_b(t_stack *a, t_stack *b, int *array, int size)
 // {
 // 	if (a_size >= 60 && a_size < 200)
 // 	{
-
+		// 1.5
 // 	}
 // 	else if (a_size >= 200 && a_size < 400)
 // 	{
@@ -578,7 +578,7 @@ void	send_to_b(t_stack *a, t_stack *b, int *array, int size)
 // 	}
 // 	else
 // 	{
-// 		// 3.3333
+// 		// 3.5
 // 	}
 // }
 
@@ -602,7 +602,7 @@ void	sort_3(t_stack *a)
 	if (a->size >= 60)
 	{ 
 		array = sub_sort_3(a);
-		send_to_b(a, b, array, 181);
+		send_to_b(a, b, array, 40);
 		sort_three(a);
 	}
 	else 

@@ -4,9 +4,9 @@ filename=.blabla000
 
 touch $filename
 i=1
-while [[ i -le 2 ]]
+while [[ i -le 1000 ]]
 do
-A=($(seq -500 500 | sort -R | head -n 60))
+A=($(seq -500 500 | sort -R | head -n 500))
 ./push_swap "${A[@]}" | wc -l | awk '{if ($1 > 5500) printf("%d ***************************\n", $1); else print $1 }' >> $filename
 ./push_swap "${A[@]}" | ./checker_Mac "${A[@]}" >> $filename
 (( i += 1 ))

@@ -27,7 +27,7 @@ typedef struct s_node
 typedef struct s_stack
 {
 	t_node	*head;
-	size_t	size;
+	int	size;
 }   t_stack;
 
 int  *merge_sort(int *ptr , int size, char c);

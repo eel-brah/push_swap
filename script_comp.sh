@@ -2,21 +2,21 @@
 
 filename=.blabla000ttt
 filename2=.blabla001ttt
-filename3=.blabla003ttt
+# filename3=.blabla003ttt
 
 touch $filename
 touch $filename2
-touch $filename3
+# touch $filename3
 i=1
-while [[ i -le 10 ]]
+while [[ i -le 100 ]]
 do
-A=($(seq -500 500 | sort -R | head -n 500))
+A=($(seq -500 500 | sort -R | head -n 100))
 $1 "${A[@]}" | wc -l | awk '{if ($1 > 5500) printf("%d ***************************\n", $1); else print $1 }' >> $filename
 $1 "${A[@]}" | ./checker_Mac "${A[@]}" >> $filename
 $2 "${A[@]}" | wc -l | awk '{if ($1 > 5500) printf("%d ***************************\n", $1); else print $1 }' >> $filename2
 $2 "${A[@]}" | ./checker_Mac "${A[@]}" >> $filename2
-$3 "${A[@]}" | wc -l | awk '{if ($1 > 5500) printf("%d ***************************\n", $1); else print $1 }' >> $filename3
-$3 "${A[@]}" | ./checker_Mac "${A[@]}" >> $filename3
+# $3 "${A[@]}" | wc -l | awk '{if ($1 > 5500) printf("%d ***************************\n", $1); else print $1 }' >> $filename3
+# $3 "${A[@]}" | ./checker_Mac "${A[@]}" >> $filename3
 (( i += 1 ))
 done
 
@@ -123,50 +123,50 @@ echo "Max: $max"
 
 
 
-KO2=$(cat $filename3 | grep -c KO)
-cat $filename3 | grep -v OK | awk '{print $1}' > .blabla0004ttt
-rm -f $filename3
-filename3=.blabla0004ttt
-sum=0
-count=0
-min=
-max=
+# KO2=$(cat $filename3 | grep -c KO)
+# cat $filename3 | grep -v OK | awk '{print $1}' > .blabla0004ttt
+# rm -f $filename3
+# filename3=.blabla0004ttt
+# sum=0
+# count=0
+# min=
+# max=
 
-#read each line from the file and calculate the sum, count, min, and max
-while IFS= read -r line; do
-    #check if the line is a valid number
-    if [[ "$line" =~ ^[0-9]+$ ]]; then
-        sum=$((sum + line))
-        count=$((count + 1))
+# #read each line from the file and calculate the sum, count, min, and max
+# while IFS= read -r line; do
+#     #check if the line is a valid number
+#     if [[ "$line" =~ ^[0-9]+$ ]]; then
+#         sum=$((sum + line))
+#         count=$((count + 1))
 
-        #update min and max
-        if [ -z "$min" ] || [ "$line" -lt "$min" ]; then
-            min=$line
-        fi
+#         #update min and max
+#         if [ -z "$min" ] || [ "$line" -lt "$min" ]; then
+#             min=$line
+#         fi
 
-        if [ -z "$max" ] || [ "$line" -gt "$max" ]; then
-            max=$line
-        fi
-    else
-        echo "Warning: Skipping invalid number on line '$line'"
-    fi
-done < "$filename3"
+#         if [ -z "$max" ] || [ "$line" -gt "$max" ]; then
+#             max=$line
+#         fi
+#     else
+#         echo "Warning: Skipping invalid number on line '$line'"
+#     fi
+# done < "$filename3"
 
-#check if any valid numbers were found
-if [ "$count" -eq 0 ]; then
-    echo "Error: No valid numbers found in the file."
-    exit 1
-fi
+# #check if any valid numbers were found
+# if [ "$count" -eq 0 ]; then
+#     echo "Error: No valid numbers found in the file."
+#     exit 1
+# fi
 
-#calculate the average
-average=$(bc <<< "scale=2; $sum / $count")
+# #calculate the average
+# average=$(bc <<< "scale=2; $sum / $count")
 
-rm -f $filename3
-echo "
-2"
-echo "KO: $KO"
-#echo "Sum: $sum"
-echo "Count: $count"
-echo "Min: $min"
-echo "Average: $average"
-echo "Max: $max"
+# rm -f $filename3
+# echo "
+# 2"
+# echo "KO: $KO"
+# #echo "Sum: $sum"
+# echo "Count: $count"
+# echo "Min: $min"
+# echo "Average: $average"
+# echo "Max: $max"

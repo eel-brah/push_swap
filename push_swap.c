@@ -40,18 +40,16 @@ typedef struct s_instractions // check norms name
 	size_t rrr;
 	size_t rra;
 	size_t rrb;
-	// char a_drc;
-	// char b_drc;
 } t_instractions;
 
-size_t min(size_t n1, size_t n2)
+int min(int n1, int n2)
 {
 	if (n1 > n2)
 		return (n2);
 	return (n1);
 }
 
-size_t max(size_t n1, size_t n2)
+int max(int n1, int n2)
 {
 	if (n1 > n2)
 		return (n1);
@@ -62,7 +60,7 @@ int highest(t_stack *a)
 {
 	int h;
 	t_node *a_stack;
-	size_t poz;
+	int poz;
 
 	a_stack = a->head;
 	h = a_stack->item;
@@ -81,7 +79,7 @@ int lowest(t_stack *a)
 {
 	int l;
 	t_node *a_stack;
-	size_t poz;
+	int poz;
 
 	a_stack = a->head;
 	l = a_stack->item;
@@ -96,10 +94,10 @@ int lowest(t_stack *a)
 	return (l);
 }
 
-size_t where_is_it(t_stack *a, int nb)
+int where_is_it(t_stack *a, int nb)
 {
 	t_node *a_stack;
-	size_t poz;
+	int poz;
 
 	a_stack = a->head;
 	poz = 0;
@@ -113,10 +111,10 @@ size_t where_is_it(t_stack *a, int nb)
 	return (poz);
 }
 
-size_t find_position_3_3(t_stack *a, int b_item)
+int find_position_3_3(t_stack *a, int b_item)
 {
 	t_node *a_stack;
-	size_t poz;
+	int poz;
 	int h;
 	int l;
 
@@ -140,7 +138,7 @@ size_t find_position_3_3(t_stack *a, int b_item)
 
 size_t	calc_instactions(t_stack *a, int b_item, char *dirc)
 {
-	size_t poz;
+	int poz;
 	
 	poz = find_position_3_3(a, b_item);
 	if (poz <= a->size / 2)
@@ -258,16 +256,10 @@ void sort_three(t_stack *a)
 		return ;
 	if (a->size == 2)
 	{
-		// if (a_stack->item < a_stack->next->item)
-		// 	return;
-		// else 
 		if(a_stack->item > a_stack->next->item)
 			sa(a);
 		return ;
 	}
-	// if (a_stack->item < a_stack->next->item && a_stack->next->item < a_stack->next->next->item )
-	// 	return;
-	// else 
 	if(a_stack->item < a_stack->next->item && a_stack->next->item > a_stack->next->next->item && a_stack->next->next->item > a_stack->item)
 	{
 		sa(a);
@@ -288,8 +280,8 @@ void sort_three(t_stack *a)
 
 void get_the_smallest_to_the_top(t_stack *a)
 {
-	size_t poz;
-	size_t r;
+	int poz;
+	int r;
 
 	poz = find_position_3_3(a, lowest(a));
 	r = 0;
@@ -313,7 +305,7 @@ void get_the_smallest_to_the_top(t_stack *a)
 
 int	is_sorted(t_stack *a)
 {
-	size_t	poz;
+	int	poz;
 	t_node *a_stack;
 
 	poz = 0;
@@ -330,103 +322,11 @@ int	is_sorted(t_stack *a)
 	return (1);
 }
 
-typedef struct s_sorted
-{
-	int begin;
-	int end;
-	int begin_poz;
-	int end_poz;
-	int size;
-} t_sorted;
-
-t_sorted find_the_largest_sorted_area(t_stack *a)
-{
-	size_t	poz;
-	t_node *a_stack;
-	t_node *a_stack_ptr;
-	t_sorted area_1;
-	t_sorted area_2;
-
-	poz = 0;
-	a_stack = a->head;
-	area_1.begin =0;
-	area_1.end = 0;
-	area_1.size = 0;
-	while(poz < a->size)
-	{
-		a_stack_ptr = a_stack;
-		area_1.begin_poz = poz + 1;
-		area_1.end_poz = area_1.begin_poz;
-		area_1.begin = a_stack_ptr->item;
-		area_1.size = 1;
-		while (a_stack_ptr->item < a_stack_ptr->next->item)
-		{
-			a_stack_ptr = a_stack_ptr->next;
-			area_1.end_poz++;
-			area_1.size++;
-		}
-		if (area_1.end_poz >= (int)a->size)
-			area_1.end_poz = area_1.end_poz - a->size;
-		area_1.end = a_stack_ptr->item;
-		if (poz == 0)
-			area_2 = area_1;
-		else if (area_1.size > area_2.size)
-			area_2 = area_1;
-		a_stack = a_stack->next;
-		poz++;
-	}
-	return (area_2);
-}
-
-int is_area_valid(t_stack *a, t_stack *b, t_sorted area)
-{
-	int a_instractions_up;
-	int a_instractions_down;
-	// return 0;
-	// return 0;
-	if (area.size >= 10)
-	{
-		if (area.end_poz <= (int)a->size / 2)
-		{
-			a_instractions_up = area.end_poz;
-			if (a_instractions_up < area.size)
-			{
-				while (a_instractions_up)
-				{
-					ra(a);
-					a_instractions_up--;
-				}
-			}
-			else
-				return (0);
-		}
-		else
-		{
-			a_instractions_down = a->size - area.end_poz;
-			if (a_instractions_down < area.size)
-			{
-				while (a_instractions_down)
-				{
-					rra(a);
-					a_instractions_down--;
-				}
-			}
-			else
-				return (0);
-		}
-		while (a->size - area.size)
-			pb(a, b);
-	}
-	else
-		return (0);
-	return (1);
-}
-
 void	sort_back_to_a(t_stack *a, t_stack *b)
 {
 	t_node *b_stack;
-	size_t b_pz;
-	size_t poz;
+	int b_pz;
+	int poz;
 	t_instractions insts;
 	size_t a_instractions_up;
 	size_t a_instractions_down;
@@ -451,9 +351,6 @@ void	sort_back_to_a(t_stack *a, t_stack *b)
 				tmp_insts = a_down_b_down(b->size - b_pz, a_instractions_down);
 				if (tmp_insts.all < insts.all)
 					insts = tmp_insts;
-				// tmp_insts = a_up_b_down(b->size - b_pz, a_instractions_up);
-				// if (tmp_insts.all < insts.all)
-				// 	insts = tmp_insts;
 			}
 			else // b down
 			{
@@ -464,9 +361,6 @@ void	sort_back_to_a(t_stack *a, t_stack *b)
 				tmp_insts = a_down_b_down(b->size - b_pz, a_instractions_down);
 				if (tmp_insts.all < insts.all)
 					insts = tmp_insts;
-				// tmp_insts = a_down_b_up(b_pz, a_instractions_down);
-				// if (tmp_insts.all < insts.all)
-				// 	insts = tmp_insts;
 			}
 			if (b_pz == 0)
 				lowest_insts = insts;
@@ -493,7 +387,7 @@ int	*sub_sort_3(t_stack *a)
 		return (NULL); // free all
 	a_stack = a->head;
 	i = 0;
-	while (i < (int)a->size)
+	while (i < a->size)
 	{
 		array[i++] = a_stack->item;
 		a_stack = a_stack->next;
@@ -515,60 +409,59 @@ int	is_exixt(int a_item, int *array, int end)
 	return (0);
 }
 
-void push_to_b(t_stack *a, t_stack *b, int poz)
+t_node *push_to_b(t_stack *a, t_stack *b, int poz)
 {
 	int	r;
 
 	r = 0;
-	if (poz <= (int)a->size / 2)
+	if (poz <= a->size / 2)
 	{
 		while (r < poz)
 		{
 			ra(a);
 			r++;
 		}
-		
 	}
 	else
 	{
-		while (r < (int)a->size - poz)
+		while (r < a->size - poz)
 		{
 			rra(a);
 			r++;
 		}
 	}
 	pb(a, b);
+	return (a->head);
 }
 
 void	send_to_b(t_stack *a, t_stack *b, int *array, int size)
 {
 	int poz;
-	int saved_size = size;
 	t_node *a_stack;
-	int *begin= array;
+	int *begin;
+	int a_size;
+	int i;
 
 	a_stack = a->head;
 	poz = 0;
-	int a_size = a->size;
-	array += saved_size;
-	int i;
-	while ((int)b->size < a_size)
+	begin = array;
+	a_size = a->size;
+	array += size;
+	while (b->size < a_size)
 	{
 		i = 0;
-		while (a_stack && i < saved_size)
+		while (a_stack && i < size)
 		{
-			if (a_stack && is_exixt(a_stack->item, array, saved_size))
+			if (a_stack && is_exixt(a_stack->item, array, size))
 			{
-				push_to_b(a, b, poz);
-				a_stack = a->head;
+				a_stack = push_to_b(a, b, poz);
 				poz = 0;
 				i++;
 			}
-			else if (a_stack && is_exixt(a_stack->item, begin, saved_size))
+			else if (a_stack && is_exixt(a_stack->item, begin, size))
 			{
-				push_to_b(a, b, poz);
+				a_stack = push_to_b(a, b, poz);
 				rb(b);
-				a_stack = a->head;
 				poz = 0;
 			}
 			else
@@ -579,8 +472,7 @@ void	send_to_b(t_stack *a, t_stack *b, int *array, int size)
 			if (a->size == 3)
 				return ;
 		}
-		size += saved_size;
-		array += saved_size;
+		array += size;
 	}
 }
 
@@ -611,7 +503,6 @@ void	sort_3(t_stack *a)
 		sort_three(a);
 		return ;
 	}
-	// t_sorted area = find_the_largest_sorted_area(a);
 	b = new_stack();
 	if (!b)
 		return ;
@@ -630,27 +521,12 @@ void	sort_3(t_stack *a)
 		if (b->size == 2 && is_sorted(b))
 			sb(b);
 	}
-
-	// if (!is_area_valid(a, b, area))
-	// if(1)
-	// {
-	// 	while (a->size - 3)
-	// 		pb(a, b);
-	// 	sort_three(a);
-	// 	if (b->size == 2 && is_sorted(b))
-	// 		sb(b);
-	// }
-
 	sort_back_to_a(a, b);
 	get_the_smallest_to_the_top(a);
 	free(array);
 	free_stack(b);
 }
 
-// replace size_t with int
-// sort it with merge sort and sent them in chanckes
-// check if it sorted and there is a big chanck alredy sorted
-// check if it is sorted sfter more then 65% back to a
 int main(int argc, char **argv)
 {
 	// atexit(fn);

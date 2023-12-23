@@ -30,6 +30,17 @@ typedef struct s_stack
 	int	size;
 }   t_stack;
 
+typedef struct s_instractions // check norms name
+{
+	int	all;
+	int	rr;
+	int	ra;
+	int	rb;
+	int	rrr;
+	int	rra;
+	int	rrb;
+}	t_instractions;
+
 int  *merge_sort(int *ptr , int size, char c);
 
 t_stack	*new_stack(void);
@@ -61,5 +72,36 @@ int	is_all_digits(char *s);
 ssize_t	str_to_int(char *str);
 void	strs_free(char **s);
 int	strs_size(char **s);
+
+void	sort(t_stack *a);
+void sort_three(t_stack *a);
+int	is_sorted(t_stack *a);
+int	send_from_a_to_b(t_stack *a, t_stack *b);
+int	*sub_sort(t_stack *a);
+int	get_size(int a_size);
+void	send_to_b(t_stack *a, t_stack *b, int *array, int size);
+t_node	*send_2(t_stack *a, t_stack *b, int *poz);
+t_node	*send_1(t_stack *a, t_stack *b, int *poz, int *i);
+void	push_to_b(t_stack *a, t_stack *b, int poz);
+int	is_exist_2(int a_item, int *array, int end);
+void	get_the_smallest_to_the_top(t_stack *a);
+void	sort_back_to_a(t_stack *a, t_stack *b);
+t_instractions	calc_instactions_0(t_stack *a, int b_size, int b_pz, t_node *b_stack);
+t_instractions	calc_instactions_2(int b_down, int b_up, int a_up, int a_down);
+t_instractions	calc_instactions_1(int b_down, int b_up, int a_up, int a_down);
+void applay_opperations(t_stack *a, t_stack *b, t_instractions insts);
+void down_opperations(t_stack *a, t_stack *b, t_instractions insts);
+void up_opperations(t_stack *a, t_stack *b, t_instractions insts);
+t_instractions a_up_b_down(int b_instractions, int a_instractions);
+t_instractions a_down_b_up(int b_instractions, int a_instractions);
+t_instractions a_down_b_down(int b_instractions, int a_instractions);
+t_instractions a_up_b_up(int b_instractions, int a_instractions);
+int find_position_3_3(t_stack *a, int b_item);
+int where_is_it(t_stack *a, int nb);
+int lowest(t_stack *a);
+int highest(t_stack *a);
+int max(int n1, int n2);
+int min(int n1, int n2);
+
 
 #endif

@@ -10,7 +10,7 @@ touch $filename2
 i=1
 while [[ i -le 100 ]]
 do
-A=($(seq -500 500 | sort -R | head -n 100))
+A=($(seq -500 500 | sort -R | head -n 500))
 $1 "${A[@]}" | wc -l | awk '{if ($1 > 5500) printf("%d ***************************\n", $1); else print $1 }' >> $filename
 $1 "${A[@]}" | ./checker_Mac "${A[@]}" >> $filename
 $2 "${A[@]}" | wc -l | awk '{if ($1 > 5500) printf("%d ***************************\n", $1); else print $1 }' >> $filename2

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   push_swap_2.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eel-brah <eel-brah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 17:38:07 by eel-brah          #+#    #+#             */
-/*   Updated: 2023/12/20 06:29:27 by eel-brah         ###   ########.fr       */
+/*   Updated: 2023/12/23 22:33:32 by eel-brah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,16 +31,12 @@ void fn()
 	system("leaks push_swap");
 }
 
-typedef struct s_instractions // check norms name
-{
-	size_t all;
-	size_t rr;
-	size_t ra;
-	size_t rb;
-	size_t rrr;
-	size_t rra;
-	size_t rrb;
-} t_instractions;
+
+
+
+
+
+
 
 int min(int n1, int n2)
 {
@@ -113,10 +109,10 @@ int where_is_it(t_stack *a, int nb)
 
 int find_position_3_3(t_stack *a, int b_item)
 {
-	t_node *a_stack;
-	int poz;
-	int h;
-	int l;
+	t_node	*a_stack;
+	int		poz;
+	int		h;
+	int		l;
 
 	h = highest(a);
 	if (b_item >= h)
@@ -136,24 +132,7 @@ int find_position_3_3(t_stack *a, int b_item)
 	return (poz);
 }
 
-size_t	calc_instactions(t_stack *a, int b_item, char *dirc)
-{
-	int poz;
-	
-	poz = find_position_3_3(a, b_item);
-	if (poz <= a->size / 2)
-	{
-		*dirc = 'u'; // a is up or down
-		return poz;
-	}
-	else
-	{
-		*dirc = 'd';
-		return a->size - poz;
-	}
-}
-
-t_instractions a_up_b_up(size_t b_instractions, size_t a_instractions)
+t_instractions a_up_b_up(int b_instractions, int a_instractions)
 {
 	t_instractions insts;
 
@@ -164,11 +143,10 @@ t_instractions a_up_b_up(size_t b_instractions, size_t a_instractions)
 	insts.rra = 0;
 	insts.rrb = 0;
 	insts.all = max(a_instractions, b_instractions);
-	// insts.all = insts.rr + insts.ra + insts.rb;
 	return (insts);
 }
 
-t_instractions a_down_b_down(size_t b_instractions, size_t a_instractions)
+t_instractions a_down_b_down(int b_instractions, int a_instractions)
 {
 	t_instractions insts;
 
@@ -179,12 +157,11 @@ t_instractions a_down_b_down(size_t b_instractions, size_t a_instractions)
 	insts.rra = a_instractions - insts.rrr;
 	insts.rrb = b_instractions - insts.rrr;
 	insts.all = max(a_instractions, b_instractions);
-	// insts.all = insts.rrr + insts.rra + insts.rrb;
 	return (insts);
 }
 
 
-t_instractions a_down_b_up(size_t b_instractions, size_t a_instractions)
+t_instractions a_down_b_up(int b_instractions, int a_instractions)
 {
 	t_instractions insts;
 
@@ -198,7 +175,7 @@ t_instractions a_down_b_up(size_t b_instractions, size_t a_instractions)
 	return (insts);
 }
 
-t_instractions a_up_b_down(size_t b_instractions, size_t a_instractions)
+t_instractions a_up_b_down(int b_instractions, int a_instractions)
 {
 	t_instractions insts;
 
@@ -212,76 +189,122 @@ t_instractions a_up_b_down(size_t b_instractions, size_t a_instractions)
 	return (insts);
 }
 
-void applay_opperations(t_stack *a, t_stack *b, t_instractions lowest_insts)
+void up_opperations(t_stack *a, t_stack *b, t_instractions insts)
 {
-	while (lowest_insts.rr)
+	while (insts.rr)
 	{
 		rr(a, b);
-		lowest_insts.rr--;
+		insts.rr--;
 	}
-	while (lowest_insts.ra)
+	while (insts.ra)
 	{
 		ra(a);
-		lowest_insts.ra--;
+		insts.ra--;
 	}
-	while (lowest_insts.rb)
+	while (insts.rb)
 	{
 		rb(b);
-		lowest_insts.rb--;
+		insts.rb--;
 	}
-	while (lowest_insts.rrr)
+}
+
+void down_opperations(t_stack *a, t_stack *b, t_instractions insts)
+{
+	while (insts.rrr)
 	{
 		rrr(a, b);
-		lowest_insts.rrr--;
+		insts.rrr--;
 	}
-	while (lowest_insts.rra)
+	while (insts.rra)
 	{
 		rra(a);
-		lowest_insts.rra--;
+		insts.rra--;
 	}
-	while (lowest_insts.rrb)
+	while (insts.rrb)
 	{
 		rrb(b);
-		lowest_insts.rrb--;
+		insts.rrb--;
 	}
+}
+
+void applay_opperations(t_stack *a, t_stack *b, t_instractions insts)
+{
+	up_opperations(a, b, insts);
+	down_opperations(a, b, insts);
 	pa(b, a);
 }
 
-void sort_three(t_stack *a)
+t_instractions	calc_instactions_1(int b_down, int b_up, int a_up, int a_down)
 {
-	t_node *a_stack;
+	t_instractions	insts;
+	t_instractions	tmp_insts;
+	
+	insts = a_up_b_up(b_up, a_up);
+	tmp_insts = a_down_b_up(b_up, a_down);
+	if (tmp_insts.all < insts.all)
+		insts = tmp_insts;
+	tmp_insts = a_down_b_down(b_down, a_down);
+	if (tmp_insts.all < insts.all)
+		insts = tmp_insts;
+	return (insts);
+}
 
-	a_stack = a->head;
-	if (a->size < 1)
-		return ;
-	if (a->size == 2)
+t_instractions	calc_instactions_2(int b_down, int b_up, int a_up, int a_down)
+{
+	t_instractions	insts;
+	t_instractions	tmp_insts;
+	
+	insts = a_up_b_up(b_up, a_up);
+	tmp_insts = a_up_b_down(b_down, a_up);
+	if (tmp_insts.all < insts.all)
+		insts = tmp_insts;
+	tmp_insts = a_down_b_down(b_down, a_down);
+	if (tmp_insts.all < insts.all)
+		insts = tmp_insts;
+	return (insts);
+}
+
+t_instractions	calc_instactions_0(t_stack *a, int b_size, int b_pz, t_node *b_stack)
+{
+	int	poz;
+
+	poz = find_position_3_3(a, b_stack->item);
+	if (b_pz <= b_size / 2)
+		return (calc_instactions_1(b_size - b_pz, b_pz, poz, a->size - poz));
+	else
+		return (calc_instactions_2(b_size - b_pz, b_pz, poz, a->size - poz));
+}
+
+void	sort_back_to_a(t_stack *a, t_stack *b)
+{
+	int				b_pz;
+	t_node			*b_stack;
+	t_instractions	insts;
+	t_instractions	lowest_insts;
+
+	while (b->size)
 	{
-		if(a_stack->item > a_stack->next->item)
-			sa(a);
-		return ;
-	}
-	if(a_stack->item < a_stack->next->item && a_stack->next->item > a_stack->next->next->item && a_stack->next->next->item > a_stack->item)
-	{
-		sa(a);
-		ra(a);
-	}
-	else if(a_stack->item < a_stack->next->item && a_stack->next->item > a_stack->next->next->item)
-		rra(a);
-	else if(a_stack->item > a_stack->next->item && a_stack->next->item < a_stack->next->next->item && a_stack->next->next->item > a_stack->item)
-		sa(a);
-	else if(a_stack->item > a_stack->next->item && a_stack->next->item < a_stack->next->next->item && a_stack->next->next->item < a_stack->item)
-		ra(a);
-	else if(a_stack->item > a_stack->next->item && a_stack->next->item > a_stack->next->next->item && a_stack->next->next->item < a_stack->item)
-	{
-		ra(a);
-		sa(a);
+		b_stack = b->head;
+		b_pz = 0;
+		while (b_pz < b->size)
+		{
+			insts = calc_instactions_0(a, b->size, b_pz, b_stack);
+			if (b_pz == 0)
+				lowest_insts = insts;
+			else if (insts.all < lowest_insts.all)
+				lowest_insts = insts;
+			b_stack = b_stack->next;
+			b_pz++;
+		}
+		applay_opperations(a, b, lowest_insts);
 	}
 }
 
-void get_the_smallest_to_the_top(t_stack *a)
+
+void	get_the_smallest_to_the_top(t_stack *a)
 {
-	int poz;
-	int r;
+	int	poz;
+	int	r;
 
 	poz = find_position_3_3(a, lowest(a));
 	r = 0;
@@ -303,100 +326,8 @@ void get_the_smallest_to_the_top(t_stack *a)
 	}
 }
 
-int	is_sorted(t_stack *a)
-{
-	int	poz;
-	t_node *a_stack;
 
-	poz = 0;
-	a_stack = a->head;
-	if (a->size <= 1)
-		return (1);
-	while (poz < a->size - 1)
-	{
-		if (a_stack->item > a_stack->next->item)
-			return (0);
-		a_stack = a_stack->next;
-		poz++;
-	}
-	return (1);
-}
-
-void	sort_back_to_a(t_stack *a, t_stack *b)
-{
-	t_node *b_stack;
-	int b_pz;
-	int poz;
-	t_instractions insts;
-	size_t a_instractions_up;
-	size_t a_instractions_down;
-	t_instractions lowest_insts;
-	t_instractions tmp_insts;
-
-	while (b->size)
-	{
-		b_stack = b->head;
-		b_pz = 0;
-		while (b_pz < b->size)
-		{
-			poz = find_position_3_3(a, b_stack->item);
-			a_instractions_up = poz;
-			a_instractions_down = a->size - poz;
-			if (b_pz <= b->size / 2) // b up
-			{
-				insts = a_up_b_up(b_pz, a_instractions_up);
-				tmp_insts = a_down_b_up(b_pz, a_instractions_down);
-				if (tmp_insts.all < insts.all)
-					insts = tmp_insts;
-				tmp_insts = a_down_b_down(b->size - b_pz, a_instractions_down);
-				if (tmp_insts.all < insts.all)
-					insts = tmp_insts;
-			}
-			else // b down
-			{
-				insts = a_up_b_up(b_pz, a_instractions_up);
-				tmp_insts = a_up_b_down(b->size - b_pz, a_instractions_up);
-				if (tmp_insts.all < insts.all)
-					insts = tmp_insts;
-				tmp_insts = a_down_b_down(b->size - b_pz, a_instractions_down);
-				if (tmp_insts.all < insts.all)
-					insts = tmp_insts;
-			}
-			if (b_pz == 0)
-				lowest_insts = insts;
-			else
-			{
-				if (insts.all < lowest_insts.all)
-					lowest_insts = insts;
-			}
-			b_stack = b_stack->next;
-			b_pz++;
-		}
-		applay_opperations(a, b, lowest_insts);
-	}
-}
-
-int	*sub_sort_3(t_stack *a)
-{
-	int *array;
-	t_node *a_stack;
-	int i;
-
-	array = malloc(sizeof(int) * a->size);
-	if (!array)
-		return (NULL); // free all
-	a_stack = a->head;
-	i = 0;
-	while (i < a->size)
-	{
-		array[i++] = a_stack->item;
-		a_stack = a_stack->next;
-	}
-	merge_sort(array, a->size, 'k'); // if faild free all
-	return (array);
-}
-
-int	is_exixt(int a_item, int *array, int end)
+int	is_exist_2(int a_item, int *array, int end)
 {
 	int i;
 
@@ -409,7 +340,7 @@ int	is_exixt(int a_item, int *array, int end)
 	return (0);
 }
 
-t_node *push_to_b(t_stack *a, t_stack *b, int poz)
+void	push_to_b(t_stack *a, t_stack *b, int poz)
 {
 	int	r;
 
@@ -431,48 +362,50 @@ t_node *push_to_b(t_stack *a, t_stack *b, int poz)
 		}
 	}
 	pb(a, b);
+}
+
+t_node	*send_1(t_stack *a, t_stack *b, int *poz, int *i)
+{
+	push_to_b(a, b, *poz);
+	*poz = 0;
+	(*i)++;
+	return (a->head);
+}
+
+t_node	*send_2(t_stack *a, t_stack *b, int *poz)
+{
+	push_to_b(a, b, *poz);
+	rb(b);
+	*poz = 0;
 	return (a->head);
 }
 
 void	send_to_b(t_stack *a, t_stack *b, int *array, int size)
 {
-	int poz;
-	t_node *a_stack;
-	int *begin;
-	int a_size;
-	int i;
+	int		i;
+	int		poz;
+	int		*ptr;
+	t_node	*a_stack;
 
-	a_stack = a->head;
 	poz = 0;
-	begin = array;
-	a_size = a->size;
-	array += size;
-	while (b->size < a_size)
+	ptr = array + size;
+	a_stack = a->head;
+	while (a->size != 3)
 	{
 		i = 0;
-		while (a_stack && i < size)
+		while (a->size != 3 && i < size)
 		{
-			if (a_stack && is_exixt(a_stack->item, array, size))
-			{
-				a_stack = push_to_b(a, b, poz);
-				poz = 0;
-				i++;
-			}
-			else if (a_stack && is_exixt(a_stack->item, begin, size))
-			{
-				a_stack = push_to_b(a, b, poz);
-				rb(b);
-				poz = 0;
-			}
+			if (is_exist_2(a_stack->item, ptr, size))
+				a_stack = send_1(a, b, &poz, &i);
+			else if (is_exist_2(a_stack->item, array, size))
+				a_stack = send_2(a, b, &poz);
 			else
 			{
 				a_stack = a_stack->next;
 				poz++;
 			}
-			if (a->size == 3)
-				return ;
 		}
-		array += size;
+		ptr += size;
 	}
 }
 
@@ -490,11 +423,109 @@ int	get_size(int a_size)
 		return ((float)a_size / 5.5);
 }
 
-void	sort_3(t_stack *a)
+int	*sub_sort(t_stack *a)
 {
-	t_stack *b;
-	int *array = NULL;
-	int size;
+	int		*array;
+	t_node	*a_stack;
+	int		i;
+
+	i = 0;
+	a_stack = a->head;
+	array = malloc(sizeof(int) * a->size);
+	if (!array)
+		return (NULL);
+	while (i < a->size)
+	{
+		array[i++] = a_stack->item;
+		a_stack = a_stack->next;
+	}
+	if (!merge_sort(array, a->size, 'k'))
+	{
+		free (array);
+		return (NULL);
+	}
+	return (array);
+}
+
+int	send_from_a_to_b(t_stack *a, t_stack *b)
+{
+    int	*array;
+
+	array = NULL;
+	if (a->size >= 60)
+	{ 
+		array = sub_sort(a);
+		if (!array)
+			return (1);
+		send_to_b(a, b, array, get_size(a->size));
+		sort_three(a);
+		free(array);
+	}
+	else 
+	{
+		while (a->size - 3)
+			pb(a, b);
+		sort_three(a);
+		if (b->size == 2 && is_sorted(b))
+			sb(b);
+	}
+	return (0);
+}
+
+
+
+
+int	is_sorted(t_stack *a)
+{
+	int	poz;
+	t_node *a_stack;
+
+	poz = 0;
+	a_stack = a->head;
+	if (a->size <= 1)
+		return (1);
+	while (poz < a->size - 1)
+	{
+		if (a_stack->item > a_stack->next->item)
+			return (0);
+		a_stack = a_stack->next;
+		poz++;
+	}
+	return (1);
+}
+
+void sort_three(t_stack *a)
+{
+	t_node *a_stack;
+
+	a_stack = a->head;
+	if (a->size == 2)
+	{
+		if(a->head->item > a->head->next->item)
+			sa(a);
+		return ;
+	}
+	if(a_stack->item < a_stack->next->item && a_stack->next->item > a_stack->next->next->item && a_stack->next->next->item > a_stack->item)
+	{
+		sa(a);
+		ra(a);
+	}
+	else if(a_stack->item < a_stack->next->item && a_stack->next->item > a_stack->next->next->item)
+		rra(a);
+	else if(a_stack->item > a_stack->next->item && a_stack->next->item < a_stack->next->next->item && a_stack->next->next->item > a_stack->item)
+		sa(a);
+	else if(a_stack->item > a_stack->next->item && a_stack->next->item < a_stack->next->next->item && a_stack->next->next->item < a_stack->item)
+		ra(a);
+	else if(a_stack->item > a_stack->next->item && a_stack->next->item > a_stack->next->next->item && a_stack->next->next->item < a_stack->item)
+	{
+		ra(a);
+		sa(a);
+	}
+}
+
+void	sort(t_stack *a)
+{
+	t_stack	*b;
 
 	if (is_sorted(a))
 		return ;
@@ -506,26 +537,17 @@ void	sort_3(t_stack *a)
 	b = new_stack();
 	if (!b)
 		return ;
-	if (a->size >= 60)
-	{ 
-		array = sub_sort_3(a);
-		size = get_size(a->size);
-		send_to_b(a, b, array, size);
-		sort_three(a);
-	}
-	else 
+	if (send_from_a_to_b(a, b))
 	{
-		while (a->size - 3)
-			pb(a, b);
-		sort_three(a);
-		if (b->size == 2 && is_sorted(b))
-			sb(b);
+		free_stack(b);
+		return ;
 	}
 	sort_back_to_a(a, b);
 	get_the_smallest_to_the_top(a);
-	free(array);
 	free_stack(b);
 }
+
+
 
 int main(int argc, char **argv)
 {
@@ -542,7 +564,7 @@ int main(int argc, char **argv)
 	if (!push_to_stack(argc - 1, argv, a))
 		return (1);
 	// print_stack(a);
-	sort_3(a);
+	sort(a);
 	// ft_printf("\n-----\n");
 	// print_stack(a);
 	free_stack(a);

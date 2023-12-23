@@ -12,6 +12,8 @@ int	*combine(int *p1, int *p2, int size, int size_1, int size_2, char c)
 	j = 0;
 	k = 0;
 	tmp_array = malloc(sizeof(int) * size);
+	if (!tmp_array)
+		return (NULL);
 	while (j < size_2 && i < size_1)
 	{
 		if (c == 'k')
@@ -68,6 +70,8 @@ int  *merge_sort(int *ptr , int size, char c)
 	p1 = merge_sort(ptr, size_1, c);
 	p2 = merge_sort(ptr + size_1, size_2, c);
 	tmp_array = combine(p1, p2, size, size_1, size_2, c);
+	if (!tmp_array)
+		return (NULL);
 	merge(tmp_array, ptr, size);
 	free(tmp_array);
 	return ptr;

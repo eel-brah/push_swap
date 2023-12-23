@@ -515,43 +515,59 @@ int	is_exixt(int a_item, int *array, int end)
 	return (0);
 }
 
+void push_to_b(t_stack *a, t_stack *b, int poz)
+{
+	int	r;
+
+	r = 0;
+	if (poz <= (int)a->size / 2)
+	{
+		while (r < poz)
+		{
+			ra(a);
+			r++;
+		}
+		
+	}
+	else
+	{
+		while (r < (int)a->size - poz)
+		{
+			rra(a);
+			r++;
+		}
+	}
+	pb(a, b);
+}
+
 void	send_to_b(t_stack *a, t_stack *b, int *array, int size)
 {
 	int poz;
 	int saved_size = size;
 	t_node *a_stack;
+	int *begin= array;
 
 	a_stack = a->head;
 	poz = 0;
-	int r;
 	int a_size = a->size;
+	array += saved_size;
+	int i;
 	while ((int)b->size < a_size)
 	{
-		while (a_stack && (int)b->size < size)
+		i = 0;
+		while (a_stack && i < saved_size)
 		{
 			if (a_stack && is_exixt(a_stack->item, array, saved_size))
 			{
-				r = 0;
-				if (poz <= (int)a->size / 2)
-				{
-					while (r < poz)
-					{
-						ra(a);
-						r++;
-					}
-					
-				}
-				else
-				{
-					while (r < (int)a->size - poz)
-					{
-						rra(a);
-						r++;
-					}
-				}
-				pb(a, b);
-				if (a->size == 3)
-					return ;
+				push_to_b(a, b, poz);
+				a_stack = a->head;
+				poz = 0;
+				i++;
+			}
+			else if (a_stack && is_exixt(a_stack->item, begin, saved_size))
+			{
+				push_to_b(a, b, poz);
+				rb(b);
 				a_stack = a->head;
 				poz = 0;
 			}
@@ -560,32 +576,33 @@ void	send_to_b(t_stack *a, t_stack *b, int *array, int size)
 				a_stack = a_stack->next;
 				poz++;
 			}
+			if (a->size == 3)
+				return ;
 		}
 		size += saved_size;
 		array += saved_size;
 	}
 }
 
-// int	get_size(int a_size)
-// {
-// 	if (a_size >= 60 && a_size < 200)
-// 	{
-		// 1.5
-// 	}
-// 	else if (a_size >= 200 && a_size < 400)
-// 	{
-// 		// 2.5
-// 	}
-// 	else
-// 	{
-// 		// 3.5
-// 	}
-// }
+int	get_size(int a_size)
+{
+	if (a_size >= 60 && a_size < 150)
+		return ((float)a_size / 2.5);
+	else if (a_size >= 150 && a_size < 400)
+		return ((float)a_size / 2.5);
+	else if (a_size >= 400 && a_size < 700)
+		return ((float)a_size / 3.5);
+	else if (a_size >= 700 && a_size < 900)
+		return ((float)a_size / 4.5);
+	else 
+		return ((float)a_size / 5.5);
+}
 
 void	sort_3(t_stack *a)
 {
 	t_stack *b;
 	int *array = NULL;
+	int size;
 
 	if (is_sorted(a))
 		return ;
@@ -598,11 +615,11 @@ void	sort_3(t_stack *a)
 	b = new_stack();
 	if (!b)
 		return ;
-	// int size = get_size(a->size);
 	if (a->size >= 60)
 	{ 
 		array = sub_sort_3(a);
-		send_to_b(a, b, array, 40);
+		size = get_size(a->size);
+		send_to_b(a, b, array, size);
 		sort_three(a);
 	}
 	else 

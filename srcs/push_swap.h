@@ -15,7 +15,7 @@
 
 # include <stdio.h>
 # include <stdlib.h>
-# include "./libft/libft.h"
+# include "../libft/libft.h"
 
 typedef struct s_node
 {
@@ -41,7 +41,7 @@ typedef struct s_instractions // check norms name
 	int	rrb;
 }	t_instractions;
 
-int  *merge_sort(int *ptr , int size, char c);
+int  *merge_sort(int *ptr , int size);
 
 t_stack	*new_stack(void);
 t_node	*new_node(int x);

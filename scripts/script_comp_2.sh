@@ -69,7 +69,7 @@ if [ "$count" -eq 0 ]; then
 fi
 
 #calculate the average
-average=$(bc <<< "scale=2; $sum / $count")
+average=$(( $sum / $count ))
 
 rm -f $filename
 echo "1"
@@ -116,7 +116,7 @@ if [ "$count" -eq 0 ]; then
 fi
 
 #calculate the average
-average=$(bc <<< "scale=2; $sum / $count")
+average=$(( $sum / $count ))
 
 rm -f $filename2
 echo "
@@ -168,7 +168,7 @@ if [ "$count" -eq 0 ]; then
 fi
 
 #calculate the average
-average=$(bc <<< "scale=2; $sum / $count")
+average=$(( $sum / $count ))
 
 rm -f $filename3
 echo "
@@ -218,7 +218,7 @@ if [ "$count" -eq 0 ]; then
 fi
 
 #calculate the average
-average=$(bc <<< "scale=2; $sum / $count")
+average=$(( $sum / $count ))
 
 rm -f $filename4
 echo "
@@ -269,7 +269,7 @@ if [ "$count" -eq 0 ]; then
 fi
 
 #calculate the average
-average=$(bc <<< "scale=2; $sum / $count")
+average=$(( $sum / $count ))
 
 rm -f $filename5
 echo "

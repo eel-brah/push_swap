@@ -8,7 +8,7 @@ touch $filename
 touch $filename2
 # touch $filename3
 i=1
-while [[ i -le 100 ]]
+while [[ i -le 10000 ]]
 do
 A=($(seq -500 500 | sort -R | head -n 500))
 $1 "${A[@]}" | wc -l | awk '{if ($1 > 5500) printf("%d ***************************\n", $1); else print $1 }' >> $filename
@@ -60,7 +60,7 @@ if [ "$count" -eq 0 ]; then
 fi
 
 #calculate the average
-average=$(bc <<< "scale=2; $sum / $count")
+average=$(( $sum / $count ))
 
 rm -f $filename
 echo "1"
@@ -107,7 +107,7 @@ if [ "$count" -eq 0 ]; then
 fi
 
 #calculate the average
-average=$(bc <<< "scale=2; $sum / $count")
+average=$(( $sum / $count ))
 
 rm -f $filename2
 echo "
@@ -159,7 +159,7 @@ echo "Max: $max"
 # fi
 
 # #calculate the average
-# average=$(bc <<< "scale=2; $sum / $count")
+# average=$(( $sum / $count ))
 
 # rm -f $filename3
 # echo "

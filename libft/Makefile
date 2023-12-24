@@ -75,7 +75,7 @@ bonus: $(BONUS_OBJ_FILES)
 	$(AR) $(ARFLAGS) $(NAME) $^
 
 $(SRC_DIRS)/%_bonus.o: $(SRC_DIRS)/%_bonus.c $(INCLUDE)
-	$(CC) $(CFLAGS) -I$(INCLUDE) -c $< -o $@
+	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
 	rm -rf $(OBJ_FILES) $(BONUS_OBJ_FILES)

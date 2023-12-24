@@ -1,7 +1,25 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int	*combine(int *p1, int *p2, int size, int size_1, int size_2, char c)
+typedef struct s_ary
+{
+	int	*p;
+	int size;
+}	t_ary;
+
+void	rem_1(int *tmp_array, int k, t_ary *p2, int j)
+{
+	while (j < p2->size)
+		tmp_array[k++] = p2->p[j++];
+}
+
+void	rem_2(int *tmp_array, int k, t_ary *p1, int i)
+{
+	while (i < p1->size)
+		tmp_array[k++] = p1->p[i++];
+}
+
+int	*combine(t_ary *p1, t_ary *p2, int size)
 {
 	int *tmp_array;
 	int i;
@@ -14,34 +32,18 @@ int	*combine(int *p1, int *p2, int size, int size_1, int size_2, char c)
 	tmp_array = malloc(sizeof(int) * size);
 	if (!tmp_array)
 		return (NULL);
-	while (j < size_2 && i < size_1)
+	while (j < p2->size && i < p1->size)
 	{
-		if (c == 'k')
-		{
-			if (p1[i] > p2[j])
-				tmp_array[k] = p1[i++];
-			else
-				tmp_array[k] = p2[j++];
-		}
+		if (p1->p[i] > p2->p[j])
+			tmp_array[k] = p1->p[i++];
 		else
-		{
-			if (p1[i] < p2[j])
-				tmp_array[k] = p1[i++];
-			else
-				tmp_array[k] = p2[j++];
-		}
+			tmp_array[k] = p2->p[j++];
 		k++;
 	}
 	if (j < i)
-	{
-		while (j < size_2)
-			tmp_array[k++] = p2[j++];
-	}
+		rem_1(tmp_array, k, p2, j);
 	else
-	{
-		while (i < size_1)
-			tmp_array[k++] = p1[i++];
-	}
+		rem_2(tmp_array, k, p1, i);
 	return (tmp_array);
 }
 
@@ -55,21 +57,19 @@ void merge(int *tmp_array, int *ptr, int size)
 	}
 }
 
-int  *merge_sort(int *ptr , int size, char c)
+int  *merge_sort(int *ptr , int size)
 {
-	int size_1;
-	int size_2;
-	int *p1;
-	int *p2;
+	t_ary p1;
+	t_ary p2;
 	int *tmp_array;
 
 	if (size <= 1)
 		return (ptr);
-	size_1 = size - size / 2;
-	size_2 = size / 2;
-	p1 = merge_sort(ptr, size_1, c);
-	p2 = merge_sort(ptr + size_1, size_2, c);
-	tmp_array = combine(p1, p2, size, size_1, size_2, c);
+	p1.size = size - size / 2;
+	p2.size = size / 2;
+	p1.p = merge_sort(ptr, p1.size);
+	p2.p = merge_sort(ptr + p1.size, p2.size);
+	tmp_array = combine(&p1, &p2, size);
 	if (!tmp_array)
 		return (NULL);
 	merge(tmp_array, ptr, size);
@@ -80,7 +80,7 @@ int  *merge_sort(int *ptr , int size, char c)
 // #include <limits.h>
 // int main()
 // {
-// 	int array[] = {-1, INT_MAX, INT_MIN , 9, 1, 55, 'a', 'i', 0, 888, 22222};
+// 	int array[] = {-1, INT_MAX, INT_MIN , 9, 1, 55, 'a', 'i', 0, 888, 22222, 9999};
 
 // 	int size = sizeof(array) / sizeof(int);
 // 	int i = 0;

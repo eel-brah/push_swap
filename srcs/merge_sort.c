@@ -1,11 +1,16 @@
-#include <stdio.h>
-#include <stdlib.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   merge_sort.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: eel-brah <eel-brah@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/12/24 15:54:37 by eel-brah          #+#    #+#             */
+/*   Updated: 2023/12/24 15:54:37 by eel-brah         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-typedef struct s_ary
-{
-	int	*p;
-	int size;
-}	t_ary;
+#include "push_swap.h"
 
 void	rem_1(int *tmp_array, int k, t_ary *p2, int j)
 {
@@ -76,20 +81,3 @@ int  *merge_sort(int *ptr , int size)
 	free(tmp_array);
 	return ptr;
 }
-
-// #include <limits.h>
-// int main()
-// {
-// 	int array[] = {-1, INT_MAX, INT_MIN , 9, 1, 55, 'a', 'i', 0, 888, 22222, 9999};
-
-// 	int size = sizeof(array) / sizeof(int);
-// 	int i = 0;
-// 	while(i < size)
-// 		printf("%i, ", array[i++]);
-// 	printf("\n");
-// 	merge_sort(array, size);
-// 	i = 0;
-// 	while(i < size)
-// 		printf("%i, ", array[i++]);
-// 	printf("\n");
-// }

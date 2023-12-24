@@ -362,3 +362,17 @@ Count: 500
 Min: 4004
 Average: 4326.63
 Max: 4671
+
+
+----
+KO: 0
+Count: 10000
+Min: 3588
+Average: 4065
+Max: 4464
+
+KO: 0
+Count: 10000
+Min: 3631
+Average: 4066
+Max: 4493

@@ -10,12 +10,12 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+#ifndef PUSH_SWAP_BONUS_H
+# define PUSH_SWAP_BONUS_H
 
 # include <stdio.h>
 # include <stdlib.h>
-# include "../libft/libft.h"
+# include "./libft/libft.h"
 
 typedef struct s_node
 {
@@ -31,13 +31,6 @@ typedef struct s_stack
 }   t_stack;
 
 
-typedef struct s_ary
-{
-	int	*p;
-	int size;
-}	t_ary;
-
-
 typedef struct s_instractions // check norms name
 {
 	int	all;
@@ -48,8 +41,6 @@ typedef struct s_instractions // check norms name
 	int	rra;
 	int	rrb;
 }	t_instractions;
-
-int		*merge_sort(int *ptr , int size);
 
 t_stack	*new_stack(void);
 t_node	*new_node(int x);
@@ -81,35 +72,25 @@ ssize_t	str_to_int(char *str);
 void	strs_free(char **s);
 int	strs_size(char **s);
 
-void	sort(t_stack *a);
-void sort_three(t_stack *a);
+
 int	is_sorted(t_stack *a);
-int	send_from_a_to_b(t_stack *a, t_stack *b);
-int	*sub_sort(t_stack *a);
-int	get_size(int a_size);
-void	send_to_b(t_stack *a, t_stack *b, int *array, int size);
-t_node	*send_2(t_stack *a, t_stack *b, int *poz);
-t_node	*send_1(t_stack *a, t_stack *b, int *poz, int *i);
-void	push_to_b(t_stack *a, t_stack *b, int poz);
-int	is_exist_2(int a_item, int *array, int end);
-void	get_the_smallest_to_the_top(t_stack *a);
-void	sort_back_to_a(t_stack *a, t_stack *b);
-t_instractions	calc_instactions_0(t_stack *a, int b_size, int b_pz, t_node *b_stack);
-t_instractions	calc_instactions_2(int b_down, int b_up, int a_up, int a_down);
-t_instractions	calc_instactions_1(int b_down, int b_up, int a_up, int a_down);
-void applay_opperations(t_stack *a, t_stack *b, t_instractions insts);
-void down_opperations(t_stack *a, t_stack *b, t_instractions insts);
-void up_opperations(t_stack *a, t_stack *b, t_instractions insts);
-t_instractions a_up_b_down(int b_instractions, int a_instractions);
-t_instractions a_down_b_up(int b_instractions, int a_instractions);
-t_instractions a_down_b_down(int b_instractions, int a_instractions);
-t_instractions a_up_b_up(int b_instractions, int a_instractions);
-int find_position_3_3(t_stack *a, int b_item);
-int where_is_it(t_stack *a, int nb);
-int lowest(t_stack *a);
-int highest(t_stack *a);
-int max(int n1, int n2);
-int min(int n1, int n2);
+
+# include <stdlib.h>
+# include <unistd.h>
+# include <stdint.h>
+
+typedef struct s_buffer
+{
+	char	*buf;
+	size_t	i;
+}	t_buffer;
+
+char	*get_next_line(int fd);
+char	*ft_gnl_get_line(t_buffer *buffer, int fd, int rt);
+char	*ft_gnl_generate_line(char **line, size_t r, size_t i, char **buf);
+char	*ft_gnl_free(char **buf, char *line, char cs);
+size_t	ft_gnl_find_nl(size_t i, char *buf, int *rt);
+size_t	tt_strlen(const char *s);
 
 
 #endif

@@ -79,3 +79,4 @@ int	push_to_stack(int args_nb, char **args, t_stack *a)
 	}
 	return (1);
 }
+ 

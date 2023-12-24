@@ -22,7 +22,7 @@ void	rem_2(int *tmp_array, int k, t_ary *p1, int i)
 {
 	while (i < p1->size)
 		tmp_array[k++] = p1->p[i++];
-}
+} 
 
 int	*combine(t_ary *p1, t_ary *p2, int size)
 {

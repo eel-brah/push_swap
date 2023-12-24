@@ -15,22 +15,19 @@ done
 
 KO=$(cat $filename | grep -c KO)
 cat $filename | grep -v OK | awk '{print $1}' > .blabla001
-
 rm -f $filename
+
 filename=.blabla001
 sum=0
 count=0
 min=
 max=
 
-#read each line from the file and calculate the sum, count, min, and max
 while IFS= read -r line; do
-    #check if the line is a valid number
     if [[ "$line" =~ ^[0-9]+$ ]]; then
         sum=$((sum + line))
         count=$((count + 1))
 
-        #update min and max
         if [ -z "$min" ] || [ "$line" -lt "$min" ]; then
             min=$line
         fi
@@ -43,21 +40,16 @@ while IFS= read -r line; do
     fi
 done < "$filename"
 
-#check if any valid numbers were found
 if [ "$count" -eq 0 ]; then
     echo "Error: No valid numbers found in the file."
     exit 1
 fi
 
-#calculate the average
 average=$(( $sum / $count ))
 
 rm -f $filename
 echo "KO: $KO"
-#echo "Sum: $sum"
 echo "Count: $count"
 echo "Min: $min"
 echo "Average: $average"
 echo "Max: $max"
-
-

@@ -15,14 +15,8 @@ FT_PRINTF_SRC_FILES := ft_printf.c ft_printf_bonus.c ft_printf_print_bonus.c ft_
 
 FT_PRINTF = $(addprefix $(FT_PRINTF_DIR)/,$(FT_PRINTF_SRC_FILES))
 
-SRC_FILES := ft_isascii.c \
-			ft_memcpy.c \
-			ft_putstr_fd.c \
-			ft_strlcat.c \
-			ft_strrchr.c \
-			ft_atoi.c \
-			ft_isdigit.c \
-			ft_memmove.c \
+SRC_FILES := ft_isascii.c ft_memcpy.c ft_putstr_fd.c ft_strlcat.c \
+			ft_strrchr.c ft_atoi.c ft_isdigit.c ft_memmove.c \
 			ft_split.c \
 			ft_strlcpy.c \
 			ft_strtrim.c \
@@ -66,22 +60,22 @@ NAME := libft.a
 all: $(NAME)
 
 $(NAME): $(OBJ_FILES)
-	$(AR) $(ARFLAGS) $@ $?
+	@$(AR) $(ARFLAGS) $@ $?
 
 $(SRC_DIRS)/%.o: $(SRC_DIRS)/%.c $(INCLUDE)
-	$(CC) $(CFLAGS) -I$(INCLUDE) -c $< -o $@
+	@$(CC) $(CFLAGS) -I$(INCLUDE) -c $< -o $@
 
 bonus: $(BONUS_OBJ_FILES)
-	$(AR) $(ARFLAGS) $(NAME) $^
+	@$(AR) $(ARFLAGS) $(NAME) $^
 
 $(SRC_DIRS)/%_bonus.o: $(SRC_DIRS)/%_bonus.c $(INCLUDE)
-	$(CC) $(CFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	rm -rf $(OBJ_FILES) $(BONUS_OBJ_FILES)
+	@rm -rf $(OBJ_FILES) $(BONUS_OBJ_FILES)
 
 fclean: clean
-	rm -f $(NAME)
+	@rm -f $(NAME)
 
 re: fclean all
 

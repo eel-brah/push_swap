@@ -33,14 +33,11 @@ count=0
 min=
 max=
 
-#read each line from the file and calculate the sum, count, min, and max
 while IFS= read -r line; do
-    #check if the line is a valid number
     if [[ "$line" =~ ^[0-9]+$ ]]; then
         sum=$((sum + line))
         count=$((count + 1))
 
-        #update min and max
         if [ -z "$min" ] || [ "$line" -lt "$min" ]; then
             min=$line
         fi
@@ -53,19 +50,16 @@ while IFS= read -r line; do
     fi
 done < "$filename"
 
-#check if any valid numbers were found
 if [ "$count" -eq 0 ]; then
     echo "Error: No valid numbers found in the file."
     exit 1
 fi
 
-#calculate the average
 average=$(( $sum / $count ))
 
 rm -f $filename
 echo "1"
 echo "KO: $KO"
-#echo "Sum: $sum"
 echo "Count: $count"
 echo "Min: $min"
 echo "Average: $average"
@@ -80,14 +74,11 @@ count=0
 min=
 max=
 
-#read each line from the file and calculate the sum, count, min, and max
 while IFS= read -r line; do
-    #check if the line is a valid number
     if [[ "$line" =~ ^[0-9]+$ ]]; then
         sum=$((sum + line))
         count=$((count + 1))
 
-        #update min and max
         if [ -z "$min" ] || [ "$line" -lt "$min" ]; then
             min=$line
         fi
@@ -100,20 +91,17 @@ while IFS= read -r line; do
     fi
 done < "$filename2"
 
-#check if any valid numbers were found
 if [ "$count" -eq 0 ]; then
     echo "Error: No valid numbers found in the file."
     exit 1
 fi
 
-#calculate the average
 average=$(( $sum / $count ))
 
 rm -f $filename2
 echo "
 2"
 echo "KO: $KO"
-#echo "Sum: $sum"
 echo "Count: $count"
 echo "Min: $min"
 echo "Average: $average"
@@ -132,14 +120,11 @@ echo "Max: $max"
 # min=
 # max=
 
-# #read each line from the file and calculate the sum, count, min, and max
 # while IFS= read -r line; do
-#     #check if the line is a valid number
 #     if [[ "$line" =~ ^[0-9]+$ ]]; then
 #         sum=$((sum + line))
 #         count=$((count + 1))
 
-#         #update min and max
 #         if [ -z "$min" ] || [ "$line" -lt "$min" ]; then
 #             min=$line
 #         fi
@@ -152,20 +137,17 @@ echo "Max: $max"
 #     fi
 # done < "$filename3"
 
-# #check if any valid numbers were found
 # if [ "$count" -eq 0 ]; then
 #     echo "Error: No valid numbers found in the file."
 #     exit 1
 # fi
 
-# #calculate the average
 # average=$(( $sum / $count ))
 
 # rm -f $filename3
 # echo "
 # 2"
 # echo "KO: $KO"
-# #echo "Sum: $sum"
 # echo "Count: $count"
 # echo "Min: $min"
 # echo "Average: $average"

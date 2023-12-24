@@ -73,7 +73,7 @@ void	strs_free(char **s);
 int	strs_size(char **s);
 
 
-int	is_sorted(t_stack *a);
+int	sorted(t_stack *a);
 
 # include <stdlib.h>
 # include <unistd.h>
@@ -86,10 +86,10 @@ typedef struct s_buffer
 }	t_buffer;
 
 char	*get_next_line(int fd);
-char	*ft_gnl_get_line(t_buffer *buffer, int fd, int rt);
+char	*ft_gnl_get_line(t_buffer *buffer, int fd, int rt, size_t buf_size);
 char	*ft_gnl_generate_line(char **line, size_t r, size_t i, char **buf);
 char	*ft_gnl_free(char **buf, char *line, char cs);
-size_t	ft_gnl_find_nl(size_t i, char *buf, int *rt);
+size_t	ft_gnl_find_nl(size_t i, char *buf, int *rt, size_t buf_size);
 size_t	tt_strlen(const char *s);
 
 

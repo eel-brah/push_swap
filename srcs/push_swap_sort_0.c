@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap_sort_0.c                                   :+:      :+:    :+:   */
+/*   push_swap_sort_0.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eel-brah <eel-brah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/24 13:41:19 by eel-brah          #+#    #+#             */
-/*   Updated: 2023/12/24 13:42:09 by eel-brah         ###   ########.fr       */
+/*   Created: 2023/12/25 15:07:44 by eel-brah          #+#    #+#             */
+/*   Updated: 2023/12/25 15:17:55 by eel-brah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,28 @@ int	is_sorted(t_stack *a)
 	return (1);
 }
 
+void	sort_three_2(t_node *a_stack, t_stack *a)
+{
+	if (a_stack->item < a_stack->next->item
+		&& a_stack->next->item > a_stack->next->next->item)
+		rra(a);
+	else if (a_stack->item > a_stack->next->item
+		&& a_stack->next->item < a_stack->next->next->item
+		&& a_stack->next->next->item > a_stack->item)
+		sa(a);
+	else if (a_stack->item > a_stack->next->item
+		&& a_stack->next->item < a_stack->next->next->item
+		&& a_stack->next->next->item < a_stack->item)
+		ra(a);
+	else if (a_stack->item > a_stack->next->item
+		&& a_stack->next->item > a_stack->next->next->item
+		&& a_stack->next->next->item < a_stack->item)
+	{
+		ra(a);
+		sa(a);
+	}
+}
+
 void	sort_three(t_stack *a)
 {
 	t_node	*a_stack;
@@ -38,26 +60,19 @@ void	sort_three(t_stack *a)
 	a_stack = a->head;
 	if (a->size == 2)
 	{
-		if(a->head->item > a->head->next->item)
+		if (a->head->item > a->head->next->item)
 			sa(a);
 		return ;
 	}
-	if(a_stack->item < a_stack->next->item && a_stack->next->item > a_stack->next->next->item && a_stack->next->next->item > a_stack->item)
+	if (a_stack->item < a_stack->next->item
+		&& a_stack->next->item > a_stack->next->next->item
+		&& a_stack->next->next->item > a_stack->item)
 	{
 		sa(a);
 		ra(a);
 	}
-	else if(a_stack->item < a_stack->next->item && a_stack->next->item > a_stack->next->next->item)
-		rra(a);
-	else if(a_stack->item > a_stack->next->item && a_stack->next->item < a_stack->next->next->item && a_stack->next->next->item > a_stack->item)
-		sa(a);
-	else if(a_stack->item > a_stack->next->item && a_stack->next->item < a_stack->next->next->item && a_stack->next->next->item < a_stack->item)
-		ra(a);
-	else if(a_stack->item > a_stack->next->item && a_stack->next->item > a_stack->next->next->item && a_stack->next->next->item < a_stack->item)
-	{
-		ra(a);
-		sa(a);
-	}
+	else
+		sort_three_2(a_stack, a);
 }
 
 void	sort(t_stack *a)

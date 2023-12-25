@@ -26,7 +26,7 @@ t_stack	*new_stack(void)
 
 t_node	*new_node(int x)
 {
-	t_node *new;
+	t_node	*new;
 
 	new = malloc(sizeof(t_node));
 	if (!new)

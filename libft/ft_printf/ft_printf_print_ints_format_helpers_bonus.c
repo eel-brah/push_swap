@@ -37,7 +37,7 @@ int	ft_printf_print_s2(t_format format, int i)
 			if (ft_printf_print_hex(format, i) == -1)
 				return (-1);
 		}
-		else 
+		else
 		{
 			if (ft_putnbr_fd_r(i, format.specifier, 1) == -1)
 				return (-1);

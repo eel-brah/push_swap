@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap_sort_6.c                                   :+:      :+:    :+:   */
+/*   push_swap_sort_6.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eel-brah <eel-brah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/24 13:41:19 by eel-brah          #+#    #+#             */
-/*   Updated: 2023/12/24 13:42:09 by eel-brah         ###   ########.fr       */
+/*   Created: 2023/12/25 15:04:10 by eel-brah          #+#    #+#             */
+/*   Updated: 2023/12/25 15:04:12 by eel-brah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,8 @@ int	find_position_3_3(t_stack *a, int b_item)
 	poz = 0;
 	while (poz < a->size)
 	{
-		if (b_item <= a_stack->item && b_item > a_stack->prev->item)
+		if (b_item <= a_stack->item
+			&& b_item > a_stack->prev->item)
 			return (poz);
 		a_stack = a_stack->next;
 		poz++;

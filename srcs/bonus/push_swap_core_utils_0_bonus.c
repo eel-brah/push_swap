@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap_core_utils_0_bonus.c                           :+:      :+:    :+:   */
+/*   push_swap_core_utils_0_bonus.c                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eel-brah <eel-brah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/13 18:10:35 by eel-brah          #+#    #+#             */
-/*   Updated: 2023/12/14 00:12:13 by eel-brah         ###   ########.fr       */
+/*   Created: 2023/12/25 14:37:35 by eel-brah          #+#    #+#             */
+/*   Updated: 2023/12/25 14:37:35 by eel-brah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap_bonus.h"
- 
+
 t_stack	*new_stack(void)
 {
 	t_stack	*s;
@@ -26,7 +26,7 @@ t_stack	*new_stack(void)
 
 t_node	*new_node(int x)
 {
-	t_node *new;
+	t_node	*new;
 
 	new = malloc(sizeof(t_node));
 	if (!new)

@@ -33,7 +33,7 @@ void	ft_putnbr_fd(int n, int fd)
 	if (n < 0)
 	{
 		nb *= -1;
-		ft_putchar_fd('-', fd); 
+		ft_putchar_fd('-', fd);
 	}
 	ft_putnbr(nb, fd);
 }

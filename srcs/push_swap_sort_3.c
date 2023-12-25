@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap_sort_3.c                                   :+:      :+:    :+:   */
+/*   push_swap_sort_3.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eel-brah <eel-brah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/24 13:41:19 by eel-brah          #+#    #+#             */
-/*   Updated: 2023/12/24 13:42:09 by eel-brah         ###   ########.fr       */
+/*   Created: 2023/12/25 15:05:04 by eel-brah          #+#    #+#             */
+/*   Updated: 2023/12/25 15:05:43 by eel-brah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ t_instractions	calc_instactions_1(int b_down, int b_up, int a_up, int a_down)
 {
 	t_instractions	insts;
 	t_instractions	tmp_insts;
-	
+
 	insts = a_up_b_up(b_up, a_up);
 	tmp_insts = a_down_b_up(b_up, a_down);
 	if (tmp_insts.all < insts.all)
@@ -31,7 +31,7 @@ t_instractions	calc_instactions_2(int b_down, int b_up, int a_up, int a_down)
 {
 	t_instractions	insts;
 	t_instractions	tmp_insts;
-	
+
 	insts = a_up_b_up(b_up, a_up);
 	tmp_insts = a_up_b_down(b_down, a_up);
 	if (tmp_insts.all < insts.all)
@@ -42,7 +42,8 @@ t_instractions	calc_instactions_2(int b_down, int b_up, int a_up, int a_down)
 	return (insts);
 }
 
-t_instractions	calc_instactions_0(t_stack *a, int b_size, int b_pz, t_node *b_stack)
+t_instractions	calc_instactions_0(t_stack *a, int b_size,
+				int b_pz, t_node *b_stack)
 {
 	int	poz;
 

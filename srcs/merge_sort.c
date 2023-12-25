@@ -12,24 +12,30 @@
 
 #include "push_swap.h"
 
-void	rem_1(int *tmp_array, int k, t_ary *p2, int j)
+void	rem_1(int *tmp_array, int k, t_ary *p2, int r)
 {
+	int	j;
+
+	j = r;
 	while (j < p2->size)
 		tmp_array[k++] = p2->p[j++];
 }
 
-void	rem_2(int *tmp_array, int k, t_ary *p1, int i)
+void	rem_2(int *tmp_array, int k, t_ary *p1, int r)
 {
+	int	i;
+
+	i = r;
 	while (i < p1->size)
 		tmp_array[k++] = p1->p[i++];
-} 
+}
 
 int	*combine(t_ary *p1, t_ary *p2, int size)
 {
-	int *tmp_array;
-	int i;
-	int j;
-	int k;
+	int	*tmp_array;
+	int	i;
+	int	j;
+	int	k;
 
 	i = 0;
 	j = 0;
@@ -52,9 +58,11 @@ int	*combine(t_ary *p1, t_ary *p2, int size)
 	return (tmp_array);
 }
 
-void merge(int *tmp_array, int *ptr, int size)
+void	merge(int *tmp_array, int *ptr, int size)
 {
-	int x = 0;
+	int	x;
+
+	x = 0;
 	while (x < size)
 	{
 		ptr[x] = tmp_array[x];
@@ -62,11 +70,11 @@ void merge(int *tmp_array, int *ptr, int size)
 	}
 }
 
-int  *merge_sort(int *ptr , int size)
+int	*merge_sort(int *ptr, int size)
 {
-	t_ary p1;
-	t_ary p2;
-	int *tmp_array;
+	t_ary	p1;
+	t_ary	p2;
+	int		*tmp_array;
 
 	if (size <= 1)
 		return (ptr);
@@ -79,5 +87,5 @@ int  *merge_sort(int *ptr , int size)
 		return (NULL);
 	merge(tmp_array, ptr, size);
 	free(tmp_array);
-	return ptr;
+	return (ptr);
 }

@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: eel-brah <eel-brah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/16 13:18:56 by eel-brah          #+#    #+#             */
-/*   Updated: 2023/12/24 20:28:45 by eel-brah         ###   ########.fr       */
+/*   Created: 2023/12/25 14:24:18 by eel-brah          #+#    #+#             */
+/*   Updated: 2023/12/25 14:56:44 by eel-brah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ char	*ft_gnl_get_line(t_buffer *buffer, int fd, int rt, size_t buf_size)
 char	*get_next_line(int fd)
 {
 	static t_buffer	buffer;
-	size_t buf_size;
+	size_t			buf_size;
 
 	buf_size = 3;
 	if (fd < 0 || buf_size <= 0)
@@ -113,14 +113,4 @@ char	*get_next_line(int fd)
 			return (NULL);
 	}
 	return (ft_gnl_get_line (&buffer, fd, 0, buf_size));
-}
-
-size_t	tt_strlen(const char *s)
-{
-	char	*ptr;
-
-	ptr = (char *)s;
-	while (ptr && *ptr)
-		ptr++;
-	return (ptr - s);
 }

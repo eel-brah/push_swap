@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap_sort_1.c                                   :+:      :+:    :+:   */
+/*   push_swap_sort_1.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eel-brah <eel-brah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/24 13:41:19 by eel-brah          #+#    #+#             */
-/*   Updated: 2023/12/24 13:42:09 by eel-brah         ###   ########.fr       */
+/*   Created: 2023/12/25 15:06:22 by eel-brah          #+#    #+#             */
+/*   Updated: 2023/12/25 15:07:31 by eel-brah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	get_size(int a_size)
 		return ((float)a_size / 3.5);
 	else if (a_size >= 700 && a_size < 900)
 		return ((float)a_size / 4.5);
-	else 
+	else
 		return ((float)a_size / 5.5);
 }
 
@@ -52,11 +52,11 @@ int	*sub_sort(t_stack *a)
 
 int	send_from_a_to_b(t_stack *a, t_stack *b)
 {
-    int	*array;
+	int	*array;
 
 	array = NULL;
 	if (a->size >= 60)
-	{ 
+	{
 		array = sub_sort(a);
 		if (!array)
 			return (1);
@@ -64,7 +64,7 @@ int	send_from_a_to_b(t_stack *a, t_stack *b)
 		sort_three(a);
 		free(array);
 	}
-	else 
+	else
 	{
 		while (a->size - 3)
 			pb(a, b);

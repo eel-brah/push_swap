@@ -24,8 +24,8 @@ typedef struct s_format
 	int		nmb;
 	int		hyphen_nmb;
 	int		zero_nmb;
-	int		precision; 
-	char	specifier; 
+	int		precision;
+	char	specifier;
 }	t_format;
 
 char		*ft_format_skep(char *str);

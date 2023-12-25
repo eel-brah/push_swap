@@ -82,6 +82,6 @@ char	*ft_get_format(const char *str)
 			return ((void *)-1);
 		return (ptr);
 	}
-	else 
+	else
 		return (NULL);
 }

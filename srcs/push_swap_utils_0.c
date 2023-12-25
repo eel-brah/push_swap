@@ -21,12 +21,12 @@ int	is_exist(t_stack *s, int x)
 		return (1);
 	ptr = s->head;
 	tail = s->head->prev;
-    while (ptr != tail)
-    {
-        if (x == ptr->item)
+	while (ptr != tail)
+	{
+		if (x == ptr->item)
 			return (0);
-        ptr = ptr->next;
-    }
+		ptr = ptr->next;
+	}
 	if (x == ptr->item)
 		return (0);
 	return (1);
@@ -79,4 +79,3 @@ int	push_to_stack(int args_nb, char **args, t_stack *a)
 	}
 	return (1);
 }
- 

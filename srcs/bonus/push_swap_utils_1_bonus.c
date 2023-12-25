@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap_utils_1_bonus.c                                :+:      :+:    :+:   */
+/*   push_swap_utils_1_bonus.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eel-brah <eel-brah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/15 17:42:57 by eel-brah          #+#    #+#             */
-/*   Updated: 2023/12/15 17:43:18 by eel-brah         ###   ########.fr       */
+/*   Created: 2023/12/25 14:23:25 by eel-brah          #+#    #+#             */
+/*   Updated: 2023/12/25 14:23:25 by eel-brah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ ssize_t	str_to_int(char *str)
 	{
 		nb = nb * 10 + (*str++ - '0') * sign;
 		if ((nb > 0 && nb > ~(1 << 31)) || (nb < 0 && nb < (1 << 31)))
-			return ((ssize_t)~(1 << 31) + 1);
+			return ((ssize_t) ~ (1 << 31) + 1);
 	}
 	return (nb);
 }
@@ -59,11 +59,21 @@ int	is_all_digits(char *s)
 	j = 0;
 	if ((s[j] == '-' || s[j] == '+') && s[j + 1])
 		j++;
-	while(s[j])
+	while (s[j])
 	{
 		if (!ft_isdigit(s[j]))
 			return (0);
 		j++;
 	}
 	return (1);
+}
+
+size_t	tt_strlen(const char *s)
+{
+	char	*ptr;
+
+	ptr = (char *)s;
+	while (ptr && *ptr)
+		ptr++;
+	return (ptr - s);
 }

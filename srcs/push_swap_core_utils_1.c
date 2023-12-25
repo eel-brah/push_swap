@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap_core_utils_1.c                                  :+:      :+:    :+:   */
+/*   push_swap_core_utils_1.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eel-brah <eel-brah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/13 17:34:05 by eel-brah          #+#    #+#             */
-/*   Updated: 2023/12/13 18:18:58 by eel-brah         ###   ########.fr       */
+/*   Created: 2023/12/25 15:19:29 by eel-brah          #+#    #+#             */
+/*   Updated: 2023/12/25 15:19:29 by eel-brah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,15 @@ t_stack	*push(t_stack *a, int x)
 		return (NULL);
 	new = new_node(x);
 	if (!new)
-		return (NULL); // free a and list if NULL
+		return (NULL);
 	return (insert(a, new));
 }
 
 t_node	*pop(t_stack *a)
 {
-	t_node  *node;
-	t_node *head;
-	t_node *tail;
+	t_node	*node;
+	t_node	*head;
+	t_node	*tail;
 
 	if (!a || !a->head)
 		return (NULL);
@@ -53,8 +53,8 @@ t_node	*pop(t_stack *a)
 
 t_stack	*insert(t_stack *s, t_node *node)
 {
-	t_node *head;
-	t_node *tail;
+	t_node	*head;
+	t_node	*tail;
 
 	if (!s || !node)
 		return (s);

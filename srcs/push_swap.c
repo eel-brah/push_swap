@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-void print_stack(t_stack *s)
+void	print_stack(t_stack *s)
 {
 	if (!s || !s->head)
 		return ;
@@ -26,17 +26,15 @@ void print_stack(t_stack *s)
 	ft_printf("%i\n", ptr->item);
 }
 
-void fn()
+void	fn()
 {
 	system("leaks push_swap");
 }
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
 	// atexit(fn);
-	// if (create_stack(argc - 1, argv))
-	// 	return (1);
-    t_stack	*a;
+	t_stack	*a;
 
 	if (argc < 2)
 		return (0);
@@ -45,10 +43,7 @@ int main(int argc, char **argv)
 		return (1);
 	if (!push_to_stack(argc - 1, argv, a))
 		return (1);
-	// print_stack(a);
 	sort(a);
-	// ft_printf("\n-----\n");
-	// print_stack(a);
 	free_stack(a);
 	return (0);
 }

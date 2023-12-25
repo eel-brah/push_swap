@@ -76,7 +76,7 @@ int	ft_printf_print_chars_helper(t_format format,
 		*str = va_arg(args, char *);
 		if (*str)
 			print = ft_strlen(*str);
-		else 
+		else
 			print = 6;
 	}
 	else if (format.specifier == 'c')

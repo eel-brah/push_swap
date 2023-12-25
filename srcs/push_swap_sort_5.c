@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap_sort_5.c                                   :+:      :+:    :+:   */
+/*   push_swap_sort_5.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eel-brah <eel-brah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/24 13:41:19 by eel-brah          #+#    #+#             */
-/*   Updated: 2023/12/24 13:42:09 by eel-brah         ###   ########.fr       */
+/*   Created: 2023/12/25 15:04:32 by eel-brah          #+#    #+#             */
+/*   Updated: 2023/12/25 15:04:42 by eel-brah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ t_instractions	a_down_b_down(int b_instractions, int a_instractions)
 	insts.all = max(a_instractions, b_instractions);
 	return (insts);
 }
-
 
 t_instractions	a_down_b_up(int b_instractions, int a_instractions)
 {

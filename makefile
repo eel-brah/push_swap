@@ -30,25 +30,26 @@ BONUS_NAME := checker
 all: $(NAME)
 
 $(NAME): $(SRC_FILES) $(LIBFT) $(INCLUDE)
-	@echo "Compiling ..."
+	@echo "\033[0;34mCompiling \033[1;34m$(NAME) ...\033[0m"
 	@$(CC) $(CFLAGS) $(SRC_FILES) $(LIBFT) -o $@
-	@echo $(NAME) "has been compiled"
+	@echo "\033[1;32m$(NAME) \033[0;32mhas been compiled\033[0m"
 
 bonus: $(BONUS_NAME)
 
 $(BONUS_NAME): $(BONUS_FILES) $(LIBFT) $(INCLUDE_BONUS)
-	@echo "Compiling ..."
+	@echo "\033[0;34mCompiling \033[1;34m$(BONUS_NAME) ...\033[0m"
 	@$(CC) $(CFLAGS) $(BONUS_FILES) $(LIBFT) -o $@
-	@echo $(BONUS_NAME) "has been compiled"
+	@echo "\033[1;32m$(BONUS_NAME) \033[0;32mhas been compiled\033[0m"
 
 $(LIBFT): $(LIBFTDIR)
-	@echo "Compiling" $(LIBFT)
+	@echo "\033[0;34mCompiling \033[1;34mlibft.a ..."
 	@$(MAKE) -C $(LIBFTDIR)
+	@echo "\033[1;32mlibft.a \033[0;32mhas been compiled"
 
 clean:
 	@$(MAKE) clean -C $(LIBFTDIR) 
-	@echo "Cleaning"
-	@echo "Done"
+	@echo "\033[0;31mCleaning\033[0m"
+	@echo "\033[0;32mDone\033[0m"
 
 fclean: clean
 	@$(MAKE) fclean -C $(LIBFTDIR) 
@@ -56,4 +57,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re bonus ins
+.PHONY: all clean fclean re bonus

@@ -6,13 +6,13 @@
 /*   By: eel-brah <eel-brah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/25 14:24:18 by eel-brah          #+#    #+#             */
-/*   Updated: 2023/12/25 15:58:36 by eel-brah         ###   ########.fr       */
+/*   Updated: 2023/12/25 16:38:32 by eel-brah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/push_swap_bonus.h"
 
-size_t	ft_gnl_find_nl(size_t i, char *buf, int *rt, size_t buf_size)
+static size_t	ft_gnl_find_nl(size_t i, char *buf, int *rt, size_t buf_size)
 {
 	while (i < (size_t)buf_size && buf[i])
 	{
@@ -27,7 +27,7 @@ size_t	ft_gnl_find_nl(size_t i, char *buf, int *rt, size_t buf_size)
 	return (i);
 }
 
-char	*ft_gnl_free(char **buf, char *line, char cs)
+static char	*ft_gnl_free(char **buf, char *line, char cs)
 {
 	if (cs == -1)
 	{
@@ -44,7 +44,7 @@ char	*ft_gnl_free(char **buf, char *line, char cs)
 	}
 }
 
-char	*ft_gnl_generate_line(char **line, size_t r, size_t i, char **buf)
+static char	*ft_gnl_generate_line(char **line, size_t r, size_t i, char **buf)
 {
 	char	*tmp;
 	size_t	len;
@@ -69,7 +69,7 @@ char	*ft_gnl_generate_line(char **line, size_t r, size_t i, char **buf)
 	return (tmp);
 }
 
-char	*ft_gnl_get_line(t_buffer *buffer, int fd, int rt, size_t buf_size)
+static char	*ft_gnl_get_line(t_buffer *buffer, int fd, int rt, size_t buf_size)
 {
 	size_t			r;
 	ssize_t			rd;

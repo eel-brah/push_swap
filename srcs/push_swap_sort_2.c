@@ -6,13 +6,13 @@
 /*   By: eel-brah <eel-brah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/25 15:06:02 by eel-brah          #+#    #+#             */
-/*   Updated: 2023/12/25 15:54:42 by eel-brah         ###   ########.fr       */
+/*   Updated: 2023/12/25 19:50:02 by eel-brah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-int	is_exist_2(int a_item, int *array, int end)
+static int	is_exist_2(int a_item, int *array, int end)
 {
 	int	i;
 
@@ -25,7 +25,7 @@ int	is_exist_2(int a_item, int *array, int end)
 	return (0);
 }
 
-void	push_to_b(t_stack *a, t_stack *b, int poz)
+static void	push_to_b(t_stack *a, t_stack *b, int poz)
 {
 	int	r;
 
@@ -49,7 +49,7 @@ void	push_to_b(t_stack *a, t_stack *b, int poz)
 	pb(a, b);
 }
 
-t_node	*send_1(t_stack *a, t_stack *b, int *poz, int *i)
+static t_node	*send_1(t_stack *a, t_stack *b, int *poz, int *i)
 {
 	push_to_b(a, b, *poz);
 	*poz = 0;
@@ -57,7 +57,7 @@ t_node	*send_1(t_stack *a, t_stack *b, int *poz, int *i)
 	return (a->head);
 }
 
-t_node	*send_2(t_stack *a, t_stack *b, int *poz)
+static t_node	*send_2(t_stack *a, t_stack *b, int *poz)
 {
 	push_to_b(a, b, *poz);
 	rb(b);

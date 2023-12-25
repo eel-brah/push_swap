@@ -15,7 +15,7 @@
 void	ft_format_initialization(t_format *format, char *formats)
 {
 	format->flags = 0;
-	format->nmb = 0; 
+	format->nmb = 0;
 	format->specifier = formats[ft_strlen(formats)-1];
 	format->precision = 0;
 	format->hyphen_nmb = 0;

@@ -6,13 +6,13 @@
 /*   By: eel-brah <eel-brah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/25 15:04:10 by eel-brah          #+#    #+#             */
-/*   Updated: 2023/12/25 15:54:42 by eel-brah         ###   ########.fr       */
+/*   Updated: 2023/12/25 19:53:55 by eel-brah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-int	highest(t_stack *a)
+static int	highest(t_stack *a)
 {
 	int		h;
 	int		poz;
@@ -31,7 +31,7 @@ int	highest(t_stack *a)
 	return (h);
 }
 
-int	lowest(t_stack *a)
+static int	lowest(t_stack *a)
 {
 	int		l;
 	int		poz;
@@ -50,7 +50,7 @@ int	lowest(t_stack *a)
 	return (l);
 }
 
-int	where_is_it(t_stack *a, int nb)
+static int	where_is_it(t_stack *a, int nb)
 {
 	t_node	*a_stack;
 	int		poz;

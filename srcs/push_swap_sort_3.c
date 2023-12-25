@@ -6,13 +6,14 @@
 /*   By: eel-brah <eel-brah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/25 15:05:04 by eel-brah          #+#    #+#             */
-/*   Updated: 2023/12/25 15:54:42 by eel-brah         ###   ########.fr       */
+/*   Updated: 2023/12/25 19:56:08 by eel-brah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-t_instractions	calc_instactions_1(int b_down, int b_up, int a_up, int a_down)
+static t_instractions	calc_instactions_1(int b_down, int b_up,
+							int a_up, int a_down)
 {
 	t_instractions	insts;
 	t_instractions	tmp_insts;
@@ -27,7 +28,8 @@ t_instractions	calc_instactions_1(int b_down, int b_up, int a_up, int a_down)
 	return (insts);
 }
 
-t_instractions	calc_instactions_2(int b_down, int b_up, int a_up, int a_down)
+static t_instractions	calc_instactions_2(int b_down, int b_up,
+							int a_up, int a_down)
 {
 	t_instractions	insts;
 	t_instractions	tmp_insts;
@@ -42,7 +44,7 @@ t_instractions	calc_instactions_2(int b_down, int b_up, int a_up, int a_down)
 	return (insts);
 }
 
-t_instractions	calc_instactions_0(t_stack *a, int b_size,
+static t_instractions	calc_instactions_0(t_stack *a, int b_size,
 				int b_pz, t_node *b_stack)
 {
 	int	poz;

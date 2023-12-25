@@ -12,7 +12,7 @@
 
 #include "../../include/push_swap_bonus.h"
 
-int	is_exist(t_stack *s, int x)
+static int	is_exist(t_stack *s, int x)
 {
 	t_node	*ptr;
 	t_node	*tail;
@@ -32,7 +32,7 @@ int	is_exist(t_stack *s, int x)
 	return (1);
 }
 
-int	an_error(char **s, t_stack *a)
+static int	an_error(char **s, t_stack *a)
 {
 	strs_free(s);
 	free_stack(a);
@@ -40,7 +40,7 @@ int	an_error(char **s, t_stack *a)
 	return (0);
 }
 
-int	push_to_stack_2(t_stack *a, char*s)
+static int	push_to_stack_2(t_stack *a, char*s)
 {
 	ssize_t	nb;
 

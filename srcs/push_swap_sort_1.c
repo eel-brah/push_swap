@@ -6,13 +6,13 @@
 /*   By: eel-brah <eel-brah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/25 15:06:22 by eel-brah          #+#    #+#             */
-/*   Updated: 2023/12/25 15:54:42 by eel-brah         ###   ########.fr       */
+/*   Updated: 2023/12/25 19:48:35 by eel-brah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-int	get_size(int a_size)
+static int	get_size(int a_size)
 {
 	if (a_size >= 60 && a_size < 150)
 		return ((float)a_size / 2.5);
@@ -26,7 +26,7 @@ int	get_size(int a_size)
 		return ((float)a_size / 5.5);
 }
 
-int	*sub_sort(t_stack *a)
+static int	*sub_sort(t_stack *a)
 {
 	int		*array;
 	t_node	*a_stack;

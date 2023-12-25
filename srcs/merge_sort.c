@@ -12,7 +12,7 @@
 
 #include "../include/push_swap.h"
 
-void	rem_1(int *tmp_array, int k, t_ary *p2, int r)
+static void	rem_1(int *tmp_array, int k, t_ary *p2, int r)
 {
 	int	j;
 
@@ -21,7 +21,7 @@ void	rem_1(int *tmp_array, int k, t_ary *p2, int r)
 		tmp_array[k++] = p2->p[j++];
 }
 
-void	rem_2(int *tmp_array, int k, t_ary *p1, int r)
+static void	rem_2(int *tmp_array, int k, t_ary *p1, int r)
 {
 	int	i;
 
@@ -30,7 +30,7 @@ void	rem_2(int *tmp_array, int k, t_ary *p1, int r)
 		tmp_array[k++] = p1->p[i++];
 }
 
-int	*combine(t_ary *p1, t_ary *p2, int size)
+static int	*combine(t_ary *p1, t_ary *p2, int size)
 {
 	int	*tmp_array;
 	int	i;
@@ -58,7 +58,7 @@ int	*combine(t_ary *p1, t_ary *p2, int size)
 	return (tmp_array);
 }
 
-void	merge(int *tmp_array, int *ptr, int size)
+static void	merge(int *tmp_array, int *ptr, int size)
 {
 	int	x;
 

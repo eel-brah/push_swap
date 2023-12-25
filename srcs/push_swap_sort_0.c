@@ -6,7 +6,7 @@
 /*   By: eel-brah <eel-brah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/25 15:07:44 by eel-brah          #+#    #+#             */
-/*   Updated: 2023/12/25 15:54:42 by eel-brah         ###   ########.fr       */
+/*   Updated: 2023/12/25 19:46:47 by eel-brah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	is_sorted(t_stack *a)
 	return (1);
 }
 
-void	sort_three_2(t_node *a_stack, t_stack *a)
+static void	sort_three_2(t_node *a_stack, t_stack *a)
 {
 	if (a_stack->item < a_stack->next->item
 		&& a_stack->next->item > a_stack->next->next->item)

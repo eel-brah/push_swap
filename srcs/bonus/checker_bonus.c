@@ -6,32 +6,13 @@
 /*   By: eel-brah <eel-brah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/24 15:53:41 by eel-brah          #+#    #+#             */
-/*   Updated: 2023/12/25 16:17:36 by eel-brah         ###   ########.fr       */
+/*   Updated: 2023/12/25 16:36:08 by eel-brah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/push_swap_bonus.h"
 
-void	print_stack(t_stack *s)
-{
-	if (!s || !s->head)
-		return ;
-	t_node *ptr = s->head;
-	t_node *tail = s->head->prev;
-    while (ptr != tail)
-    {
-        ft_printf("%i\n", ptr->item);
-        ptr = ptr->next;
-    }
-	ft_printf("%i\n", ptr->item);
-}
-
-void	fn()
-{
-	system("leaks checker");
-}
-
-int	sorted(t_stack *a)
+static int	sorted(t_stack *a)
 {
 	int		poz;
 	t_node	*a_stack;
@@ -50,7 +31,7 @@ int	sorted(t_stack *a)
 	return (1);
 }
 
-int	an_error_2(t_stack *a, t_stack *b, char *ins)
+static int	an_error_2(t_stack *a, t_stack *b, char *ins)
 {
 	free_stack(a);
 	free_stack(b);
@@ -59,7 +40,7 @@ int	an_error_2(t_stack *a, t_stack *b, char *ins)
 	return (1);
 }
 
-int	applay_ins(t_stack *a, t_stack *b, char *ins)
+static int	applay_ins(t_stack *a, t_stack *b, char *ins)
 {
 	if (ft_strncmp(ins, "sa\n", 4) == 0)
 		sa(a);
@@ -88,7 +69,7 @@ int	applay_ins(t_stack *a, t_stack *b, char *ins)
 	return (0);
 }
 
-int	checker(t_stack *a, t_stack *b)
+static int	checker(t_stack *a, t_stack *b)
 {
 	char	*ins;
 
@@ -110,7 +91,6 @@ int	checker(t_stack *a, t_stack *b)
 
 int	main(int argc, char **argv)
 {
-	atexit(fn);
 	t_stack	*a;
 	t_stack	*b;
 

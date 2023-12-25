@@ -6,13 +6,13 @@
 /*   By: eel-brah <eel-brah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/25 15:04:51 by eel-brah          #+#    #+#             */
-/*   Updated: 2023/12/25 15:54:42 by eel-brah         ###   ########.fr       */
+/*   Updated: 2023/12/25 19:52:28 by eel-brah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-void	up_opperations(t_stack *a, t_stack *b, t_instractions insts)
+static void	up_opperations(t_stack *a, t_stack *b, t_instractions insts)
 {
 	while (insts.rr)
 	{
@@ -31,7 +31,7 @@ void	up_opperations(t_stack *a, t_stack *b, t_instractions insts)
 	}
 }
 
-void	down_opperations(t_stack *a, t_stack *b, t_instractions insts)
+static void	down_opperations(t_stack *a, t_stack *b, t_instractions insts)
 {
 	while (insts.rrr)
 	{

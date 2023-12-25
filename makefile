@@ -27,24 +27,27 @@ BONUS_FILES := $(addprefix $(BONUS_DIRS)/,$(BONUS_FILES))
 NAME := push_swap
 BONUS_NAME := checker
 
-all: $(NAME)
+all: lib $(NAME)
 
-$(NAME): $(SRC_FILES) $(LIBFT) $(INCLUDE)
+$(NAME): $(SRC_FILES) $(INCLUDE) $(LIBFT)
 	@echo "\033[0;34mCompiling \033[1;34m$(NAME) ...\033[0m"
 	@$(CC) $(CFLAGS) $(SRC_FILES) $(LIBFT) -o $@
 	@echo "\033[1;32m$(NAME) \033[0;32mhas been compiled\033[0m"
 
-bonus: $(BONUS_NAME)
+bonus: lib $(BONUS_NAME)
 
 $(BONUS_NAME): $(BONUS_FILES) $(LIBFT) $(INCLUDE_BONUS)
 	@echo "\033[0;34mCompiling \033[1;34m$(BONUS_NAME) ...\033[0m"
 	@$(CC) $(CFLAGS) $(BONUS_FILES) $(LIBFT) -o $@
 	@echo "\033[1;32m$(BONUS_NAME) \033[0;32mhas been compiled\033[0m"
 
-$(LIBFT): $(LIBFTDIR)
-	@echo "\033[0;34mCompiling \033[1;34mlibft.a ..."
+$(LIBFT):
+	# @echo "\033[0;34mCompiling \033[1;34mlibft.a ..."
+	# @$(MAKE) -C $(LIBFTDIR)
+	# @echo "\033[1;32mlibft.a \033[0;32mhas been compiled"
+
+lib:
 	@$(MAKE) -C $(LIBFTDIR)
-	@echo "\033[1;32mlibft.a \033[0;32mhas been compiled"
 
 clean:
 	@$(MAKE) clean -C $(LIBFTDIR) 
@@ -57,4 +60,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re bonus
+.PHONY: all clean fclean re bonus lib

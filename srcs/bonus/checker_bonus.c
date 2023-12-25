@@ -6,11 +6,11 @@
 /*   By: eel-brah <eel-brah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/24 15:53:41 by eel-brah          #+#    #+#             */
-/*   Updated: 2023/12/25 15:00:58 by eel-brah         ###   ########.fr       */
+/*   Updated: 2023/12/25 16:17:36 by eel-brah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap_bonus.h"
+#include "../../include/push_swap_bonus.h"
 
 void	print_stack(t_stack *s)
 {
@@ -110,7 +110,7 @@ int	checker(t_stack *a, t_stack *b)
 
 int	main(int argc, char **argv)
 {
-	// atexit(fn);
+	atexit(fn);
 	t_stack	*a;
 	t_stack	*b;
 
@@ -123,7 +123,10 @@ int	main(int argc, char **argv)
 		return (1);
 	b = new_stack();
 	if (!b)
+	{
+		free_stack(a);
 		return (1);
+	}
 	if (checker(a, b))
 		return (1);
 	free_stack(a);

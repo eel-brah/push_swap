@@ -6,11 +6,11 @@
 /*   By: eel-brah <eel-brah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/25 15:04:32 by eel-brah          #+#    #+#             */
-/*   Updated: 2023/12/25 15:04:42 by eel-brah         ###   ########.fr       */
+/*   Updated: 2023/12/25 15:54:42 by eel-brah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../include/push_swap.h"
 
 t_instractions	a_up_b_up(int b_instractions, int a_instractions)
 {

@@ -6,11 +6,11 @@
 /*   By: eel-brah <eel-brah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/25 14:24:18 by eel-brah          #+#    #+#             */
-/*   Updated: 2023/12/25 14:56:44 by eel-brah         ###   ########.fr       */
+/*   Updated: 2023/12/25 15:58:36 by eel-brah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap_bonus.h"
+#include "../../include/push_swap_bonus.h"
 
 size_t	ft_gnl_find_nl(size_t i, char *buf, int *rt, size_t buf_size)
 {

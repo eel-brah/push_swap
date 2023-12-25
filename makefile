@@ -4,14 +4,14 @@ CFLAGS := -Wall -Wextra -Werror
 AR := ar
 ARFLAGS := rcs
 
-LIBFTDIR := ./libft
-LIBFT := $(LIBFTDIR)/libft.a
-
+INCLUDE_DIR := include
 SRC_DIRS := srcs
 BONUS_DIRS := srcs/bonus
-INCLUDE := $(SRC_DIRS)/push_swap.h
-INCLUDE_BONUS := $(BONUS_DIRS)/push_swap_bonus.h
+LIBFTDIR := ./libft
 
+LIBFT := $(LIBFTDIR)/libft.a
+INCLUDE := $(INCLUDE_DIR)/push_swap.h
+INCLUDE_BONUS := $(INCLUDE_DIR)/push_swap_bonus.h
 SRC_FILES := push_swap.c push_swap_core_utils_0.c push_swap_core_utils_1.c push_swap_core_utils_2.c \
 				push_swap_operations_0.c push_swap_operations_1.c push_swap_operations_2.c \
 				push_swap_utils_0.c push_swap_utils_1.c push_swap_utils_2.c merge_sort.c \
@@ -30,12 +30,14 @@ BONUS_NAME := checker
 all: $(NAME)
 
 $(NAME): $(SRC_FILES) $(LIBFT) $(INCLUDE)
+	@echo "Compiling ..."
 	@$(CC) $(CFLAGS) $(SRC_FILES) $(LIBFT) -o $@
 	@echo $(NAME) "has been compiled"
 
 bonus: $(BONUS_NAME)
 
 $(BONUS_NAME): $(BONUS_FILES) $(LIBFT) $(INCLUDE_BONUS)
+	@echo "Compiling ..."
 	@$(CC) $(CFLAGS) $(BONUS_FILES) $(LIBFT) -o $@
 	@echo $(BONUS_NAME) "has been compiled"
 
@@ -53,8 +55,5 @@ fclean: clean
 	@rm -f $(NAME) $(BONUS_NAME)
 
 re: fclean all
-
-# ins:
-# 	@echo "Compiling ..."
 
 .PHONY: all clean fclean re bonus ins

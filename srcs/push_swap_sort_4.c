@@ -6,11 +6,11 @@
 /*   By: eel-brah <eel-brah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/25 15:04:51 by eel-brah          #+#    #+#             */
-/*   Updated: 2023/12/25 15:04:56 by eel-brah         ###   ########.fr       */
+/*   Updated: 2023/12/25 15:54:42 by eel-brah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../include/push_swap.h"
 
 void	up_opperations(t_stack *a, t_stack *b, t_instractions insts)
 {

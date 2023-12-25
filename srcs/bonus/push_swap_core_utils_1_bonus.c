@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap_bonus.h"
+#include "../../include/push_swap_bonus.h"
 
 t_stack	*push(t_stack *a, int x)
 {

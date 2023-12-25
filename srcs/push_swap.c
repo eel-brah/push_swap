@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../include/push_swap.h"
 
 void	print_stack(t_stack *s)
 {
@@ -26,14 +26,8 @@ void	print_stack(t_stack *s)
 	ft_printf("%i\n", ptr->item);
 }
 
-void	fn()
-{
-	system("leaks push_swap");
-}
-
 int	main(int argc, char **argv)
 {
-	// atexit(fn);
 	t_stack	*a;
 
 	if (argc < 2)

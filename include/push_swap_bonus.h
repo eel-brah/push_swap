@@ -14,7 +14,7 @@
 # define PUSH_SWAP_BONUS_H
 
 # include <stdlib.h>
-# include "../../libft/libft.h"
+# include "../libft/libft.h"
 
 typedef struct s_node
 {
@@ -28,17 +28,6 @@ typedef struct s_stack
 	t_node	*head;
 	int		size;
 }	t_stack;
-
-typedef struct s_instractions
-{
-	int	all;
-	int	rr;
-	int	ra;
-	int	rb;
-	int	rrr;
-	int	rra;
-	int	rrb;
-}	t_instractions;
 
 typedef struct s_buffer
 {

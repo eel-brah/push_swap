@@ -6,11 +6,11 @@
 /*   By: eel-brah <eel-brah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/25 15:06:22 by eel-brah          #+#    #+#             */
-/*   Updated: 2023/12/25 15:07:31 by eel-brah         ###   ########.fr       */
+/*   Updated: 2023/12/25 15:54:42 by eel-brah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../include/push_swap.h"
 
 int	get_size(int a_size)
 {

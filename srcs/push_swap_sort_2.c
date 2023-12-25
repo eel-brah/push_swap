@@ -6,11 +6,11 @@
 /*   By: eel-brah <eel-brah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/25 15:06:02 by eel-brah          #+#    #+#             */
-/*   Updated: 2023/12/25 15:06:14 by eel-brah         ###   ########.fr       */
+/*   Updated: 2023/12/25 15:54:42 by eel-brah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../include/push_swap.h"
 
 int	is_exist_2(int a_item, int *array, int end)
 {

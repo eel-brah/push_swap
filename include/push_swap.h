@@ -38,13 +38,13 @@ typedef struct s_ary
 
 typedef struct s_instractions
 {
-	int	all;
-	int	rr;
-	int	ra;
-	int	rb;
-	int	rrr;
-	int	rra;
-	int	rrb;
+	size_t	all;
+	size_t	rr;
+	size_t	ra;
+	size_t	rb;
+	size_t	rrr;
+	size_t	rra;
+	size_t	rrb;
 }	t_instractions;
 
 t_stack			*new_stack(void);

@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/push_swap_bonus.h"
+#include "../include/push_swap_bonus.h"
 
 int	strs_size(char **s)
 {

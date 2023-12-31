@@ -6,11 +6,11 @@
 /*   By: eel-brah <eel-brah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/24 15:53:41 by eel-brah          #+#    #+#             */
-/*   Updated: 2023/12/25 16:36:08 by eel-brah         ###   ########.fr       */
+/*   Updated: 2023/12/31 17:09:29 by eel-brah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/push_swap_bonus.h"
+#include "../include/push_swap_bonus.h"
 
 static int	sorted(t_stack *a)
 {

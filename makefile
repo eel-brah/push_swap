@@ -5,8 +5,8 @@ AR := ar
 ARFLAGS := rcs
 
 INCLUDE_DIR := include
-SRC_DIRS := srcs
-BONUS_DIRS := srcs/bonus
+SRC_DIRS := src
+BONUS_DIRS := bonus
 LIBFTDIR := ./libft
 
 LIBFT := $(LIBFTDIR)/libft.a

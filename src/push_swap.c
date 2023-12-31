@@ -12,20 +12,6 @@
 
 #include "../include/push_swap.h"
 
-void	print_stack(t_stack *s)
-{
-	if (!s || !s->head)
-		return ;
-	t_node *ptr = s->head;
-	t_node *tail = s->head->prev;
-    while (ptr != tail)
-    {
-        ft_printf("%i\n", ptr->item);
-        ptr = ptr->next;
-    } 
-	ft_printf("%i\n", ptr->item);
-}
-
 int	main(int argc, char **argv)
 {
 	t_stack	*a;

@@ -1,35 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap_operations_1_bonus.c                     :+:      :+:    :+:   */
+/*   push_swap_operations_2_bonus.c                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eel-brah <eel-brah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/25 14:23:39 by eel-brah          #+#    #+#             */
-/*   Updated: 2023/12/25 14:23:39 by eel-brah         ###   ########.fr       */
+/*   Created: 2023/12/25 14:23:53 by eel-brah          #+#    #+#             */
+/*   Updated: 2023/12/25 14:23:53 by eel-brah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/push_swap_bonus.h"
+#include "../include/push_swap_bonus.h"
 
-void	ra(t_stack *a)
+void	rra(t_stack *a)
 {
 	if (!a)
 		return ;
-	rotate(a);
+	rev_rotate(a);
 }
 
-void	rb(t_stack *b)
+void	rrb(t_stack *b)
 {
 	if (!b)
 		return ;
-	rotate(b);
+	rev_rotate(b);
 }
 
-void	rr(t_stack *a, t_stack *b)
+void	rrr(t_stack *a, t_stack *b)
 {
 	if (!a || !b)
 		return ;
-	rotate(a);
-	rotate(b);
+	rev_rotate(a);
+	rev_rotate(b);
 }
